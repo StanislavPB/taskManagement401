@@ -1,4 +1,4 @@
-package entity;
+package org.taskmanagement401.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

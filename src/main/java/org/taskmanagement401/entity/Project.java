@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class Project {
 
-    private String id;
+    private int id;
     private String name;
     private String discription;
-    //private List<User> users;
+    private List<User> users;
     //private List<Task> tasks;
     private boolean status;
 
@@ -18,13 +18,13 @@ public class Project {
      */
 
 
-    public Project(String id, String name, String discription) {
+    public Project(int id, String name, String discription) {
         this.id = id;
         this.name = name;
         this.discription = discription;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

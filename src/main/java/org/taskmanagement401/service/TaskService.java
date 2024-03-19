@@ -1,7 +1,7 @@
-package service;
+package org.taskmanagement401.service;
 
-import entity.Task;
-import repository.TaskRepository;
+import org.taskmanagement401.entity.Task;
+import org.taskmanagement401.repository.TaskRepository;
 
 public class TaskService {
     private final TaskRepository repository;
