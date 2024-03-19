@@ -1,22 +1,14 @@
-package org.taskmanagement401.entity;
+package org.taskmanagement401.dto;
 
-public class User {
-    private int id;
+public class UserDto {
     private String name;
     private String login;
     private String password;
-    private int status;
 
-    public User(int id, String name, String login, String password, int status) {
-        this.id = id;
+    public UserDto(String name, String login, String password) {
         this.name = name;
         this.login = login;
         this.password = password;
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
@@ -29,9 +21,5 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public int getStatus() {
-        return status;
     }
 }
