@@ -1,8 +1,6 @@
 package org.taskmanagement401;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.taskmanagement401.servises.manus.MainMenu;
+import org.taskmanagement401.service.manus.MainMenu;
 
 public class TaskManagement401Application {
 

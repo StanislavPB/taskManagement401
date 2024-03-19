@@ -1,9 +1,9 @@
-package org.taskmanagement401.servises.manus;
+package org.taskmanagement401.service.manus;
 
 
 
 
-import org.taskmanagement401.servises.util.UserInput;
+import org.taskmanagement401.service.util.UserInput;
 
 import java.util.ArrayList;
 

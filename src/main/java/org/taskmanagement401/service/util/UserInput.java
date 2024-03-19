@@ -1,4 +1,4 @@
-package org.taskmanagement401.servises.util;
+package org.taskmanagement401.service.util;
 
 import java.util.Scanner;
 

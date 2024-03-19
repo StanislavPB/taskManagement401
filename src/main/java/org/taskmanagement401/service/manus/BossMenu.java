@@ -1,18 +1,18 @@
-package org.taskmanagement401.servises.manus;
+package org.taskmanagement401.service.manus;
 
 import org.taskmanagement401.config.MenusItems;
 
 import java.util.ArrayList;
 
-public class EmployeeMenu {
+public class BossMenu {
     Menu menu=new Menu();
     MenusItems items=new MenusItems();
-    ArrayList<String> employeeMenu= items.getMenu("Employee");
-    public EmployeeMenu() {
+    ArrayList<String> bossMenu= items.getMenu("Chef");
+    public BossMenu() {
         int userAnswer=0;
-        while (userAnswer!=employeeMenu.size()){
-            menu.printMenu(employeeMenu);
-            userAnswer=menu.getUserChoice(employeeMenu.size());
+        while (userAnswer!=bossMenu.size()){
+            menu.printMenu(bossMenu);
+            userAnswer=menu.getUserChoice(bossMenu.size());
             manageMain(userAnswer);
         }
     }

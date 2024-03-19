@@ -1,4 +1,4 @@
-package org.taskmanagement401.Enteties;
+package org.taskmanagement401.entity;
 
 public class User {
     int id;
