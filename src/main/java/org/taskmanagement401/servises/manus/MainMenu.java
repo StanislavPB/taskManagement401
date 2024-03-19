@@ -30,10 +30,16 @@ public class MainMenu {
                 menu.printError();
                 break;
             case 1:
-                BossMenu bossMenu=new BossMenu();
+                EmployeeMenu employeeMenu=new EmployeeMenu();
+
                 break;
             case 2:
-                EmployeeMenu employeeMenu=new EmployeeMenu();
+                int status=1;
+                if(status==1){
+                    BossMenu bossMenu=new BossMenu();
+                }else {
+                    employeeMenu = new EmployeeMenu();
+                }
                 break;
         }
     }
