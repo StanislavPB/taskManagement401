@@ -52,6 +52,9 @@ public class Project {
         this.tasks = tasks;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
 
     @Override
     public String toString() {
