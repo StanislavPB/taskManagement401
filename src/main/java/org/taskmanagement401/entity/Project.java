@@ -9,7 +9,7 @@ public class Project {
     private String name;
     private String discription;
     private List<User> users;
-    //private List<Task> tasks;
+    private List<Task> tasks;
     private boolean status;
 
     /*на коллекции не добавляла пока Getter&Setter, а сами поля закомментировала, потому что ошибку выдает -
@@ -36,12 +36,31 @@ public class Project {
         return discription;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+
     @Override
     public String toString() {
         return "Project{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", discription='" + discription + '\'' +
+                ", users=" + users +
+                ", tasks=" + tasks +
                 ", status=" + status +
                 '}';
     }
@@ -57,5 +76,7 @@ public class Project {
     public int hashCode() {
         return Objects.hash(id, name, discription, status);
     }
+
+
 }
 
