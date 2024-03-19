@@ -2,6 +2,7 @@ package org.taskmanagement401.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Task {
     private String taskID;
@@ -10,7 +11,7 @@ public class Task {
     private List<User> assignedUsers;
     private Prority priority;
     private boolean taskCompleted;
-    private List<Comment> comments;
+    //private List<Comment> comments;
 
     public Task(String taskID, String taskName, LocalDate endDate, Prority priority) {
         this.taskID = taskID;
@@ -19,7 +20,7 @@ public class Task {
         this.assignedUsers = new ArrayList<>();
         this.priority = priority;
         this.taskCompleted = false;
-        this.comments = new ArrayList<>();
+      //  this.comments = new ArrayList<>();
     }
 
     public String getTaskID() {
@@ -46,9 +47,9 @@ public class Task {
         return taskCompleted;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+    //public List<Comment> getComments() {
+      //  return comments;
+    //}
 
     public void setTaskID(String taskID) {
         this.taskID = taskID;
@@ -63,7 +64,7 @@ public class Task {
                 ", assignedUsers=" + assignedUsers +
                 ", priority=" + priority +
                 ", taskCompleted=" + taskCompleted +
-                ", comments=" + comments +
+      //          ", comments=" + comments +
                 '}';
     }
 }

@@ -10,27 +10,29 @@ import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.UserValidation;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RegistrationService {
-    private User user;
+
     private UserValidation validation=new UserValidation();
     private UserRepository repository;
 
     public RegistrationService(UserRepository repository) {
+
         this.repository = repository;
     }
 
     public ResponseDTO registration(){
-        UserDto dto=UserTalkService.getUserParameters();
+        UserDto dto=UserTalkService.getUserParameters(true);
         List<ErrorDto> errors=validation.checkUser(dto);
         if(errors.isEmpty()){
-            int id=repository.addNewUser(dto);
-            if(id==-1){
+            Optional<User> user=repository.addNewUser(dto);
+            if(user.isEmpty()){
                 errors.add(new ErrorDto(ErrorCodes.WRONGNEWLOGIN.getStatusCode(),
                         ErrorCodes.WRONGNEWLOGIN.getDescription()));
                 return new ResponseDTO<>(400,errors);
             }else{
-                return new ResponseDTO<>(200,id);
+                return new ResponseDTO<>(200,user.get());
             }
 
         }else{
