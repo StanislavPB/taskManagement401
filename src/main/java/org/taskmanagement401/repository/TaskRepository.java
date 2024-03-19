@@ -1,16 +1,16 @@
-package repository;
+package org.taskmanagement401.repository;
 
-import entity.Task;
+import org.taskmanagement401.entity.Task;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 public class TaskRepository implements TaskRepositoryInterface {
 
-   private List<Task> tasks;
-    private String id;
-    private int counter = 0;
+   private final List<Task> tasks;
+    private Integer id = 0;
 
     public TaskRepository() {
         this.tasks = new ArrayList<>();
@@ -18,14 +18,13 @@ public class TaskRepository implements TaskRepositoryInterface {
 
     @Override
     public Task add(Task newTask) {
-        id = "ts-" + counter++;
-        newTask.setTaskID(id);
+        newTask.setTaskID(++id);
         tasks.add(newTask);
         return newTask;
     }
 
     @Override
-    public Optional<Task> findById(String taskId) {
+    public Optional<Task> findById(Integer taskId) {
         for (Task task : tasks) {
             if (task.getTaskID().equals(taskId)) {
                 return Optional.of(task);
@@ -51,6 +50,11 @@ public class TaskRepository implements TaskRepositoryInterface {
 
     @Override
     public void delete(String taskId) {
-        tasks.removeIf(task -> task.getTaskID().equals(taskId));
+        for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext();) {
+            Task task = iterator.next();
+            if (task.getTaskID().equals(taskId)) {
+                iterator.remove();
+            }
+        }
     }
 }
