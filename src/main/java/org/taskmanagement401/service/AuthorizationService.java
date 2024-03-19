@@ -9,6 +9,7 @@ import org.taskmanagement401.repository.UserRepository;
 import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.UserValidation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,8 @@ public class AuthorizationService {
     public ResponseDTO verification(){
         UserDto dto= UserTalkService.getUserParameters(false);
         Optional<User>user =repository.getUserIdByLoginAndPassword(dto);
-        List<ErrorDto> errors=validation.checkUser(dto);
         if(user.isEmpty()){
+            List<ErrorDto> errors =new ArrayList<>();
             errors.add(new ErrorDto(ErrorCodes.WRONGLOGINDATA.getStatusCode(),
                     ErrorCodes.WRONGLOGINDATA.getDescription()));
             return new ResponseDTO<>(400,errors);
