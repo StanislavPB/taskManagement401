@@ -1,5 +1,6 @@
 package org.taskmanagement401.repository;
 
+import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.entity.Task;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-public class TaskRepository implements TaskRepositoryInterface {
+public class TaskRepository {
 
    private final List<Task> tasks;
     private Integer id = 0;
@@ -16,14 +17,17 @@ public class TaskRepository implements TaskRepositoryInterface {
     public TaskRepository() {
         this.tasks = new ArrayList<>();
     }
-    @Override
-    public Task add(Task newTask) {
-        newTask.setTaskID(++id);
-        tasks.add(newTask);
-        return newTask;
+
+    private Task createNewTask(TaskDto dto){
+        return new Task(++id, dto.getTaskName(), dto.getEndDate(), dto.getPriority().getStatusPriority());
+    }
+    public boolean addTask(TaskDto newTask) {
+        Task task = createNewTask(newTask);
+        tasks.add(task);
+        return true;
     }
 
-    @Override
+
     public Optional<Task> findById(Integer taskId) {
         for (Task task : tasks) {
             if (task.getTaskID().equals(taskId)) {
@@ -33,7 +37,7 @@ public class TaskRepository implements TaskRepositoryInterface {
         return Optional.empty();
     }
 
-    @Override
+
     public Optional<Task> findByName(String taskName) {
         for (Task task : tasks) {
             if (task.getTaskName().equals(taskName)) {
@@ -43,12 +47,12 @@ public class TaskRepository implements TaskRepositoryInterface {
         return Optional.empty();
     }
 
-    @Override
+
     public List<Task> findAll() {
         return tasks;
     }
 
-    @Override
+
     public void delete(String taskId) {
         for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext();) {
             Task task = iterator.next();

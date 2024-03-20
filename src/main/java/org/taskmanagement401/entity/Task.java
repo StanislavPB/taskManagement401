@@ -13,14 +13,13 @@ public class Task {
     private boolean taskCompleted;
     private List<Comment> comments;
 
-    public Task( String taskName, LocalDate endDate, Priority priority) {
+    public Task(Integer taskID, String taskName, LocalDate endDate, int statusPriority) {
+        this.taskID = taskID;
         this.taskName = taskName;
+        this.priority = fromStatusPriority(statusPriority);
         this.endDate = endDate;
-        this.assignedUsers = new ArrayList<>();
-        this.priority = priority;
-        this.taskCompleted = false;
-        this.comments = new ArrayList<>();
     }
+
     public Integer getTaskID() {
         return taskID;
     }
@@ -46,15 +45,23 @@ public class Task {
         return taskCompleted;
     }
 
-
-   
-
-    //public List<Comment> getComments() {
-      //  return comments;
-    //}
+    public List<Comment> getComments() {
+        return comments;
+    }
 
    public void setTaskID(Integer taskID) {
         this.taskID = taskID;
+    }
+
+    public static Priority fromStatusPriority(int statusPriority) {
+        if (statusPriority == 1) {
+            return Priority.HIGH;
+        } else if (statusPriority == 2) {
+            return Priority.MEDIUM;
+        } else if (statusPriority == 3) {
+            return Priority.LOW;
+        }
+        return null;
     }
 
     @Override
@@ -66,7 +73,7 @@ public class Task {
                 ", assignedUsers=" + assignedUsers +
                 ", priority=" + priority +
                 ", taskCompleted=" + taskCompleted +
-      //          ", comments=" + comments +
+                ", comments=" + comments +
                 '}';
     }
 }
