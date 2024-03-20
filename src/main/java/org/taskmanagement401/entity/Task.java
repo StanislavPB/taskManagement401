@@ -11,7 +11,7 @@ public class Task {
     private List<User> assignedUsers;
     private Priority priority;
     private boolean taskCompleted;
-    private List<Comment> comments;
+     //private List<Comment> comments;
 
     public Task( String taskName, LocalDate endDate, Priority priority) {
         this.taskName = taskName;
@@ -21,7 +21,6 @@ public class Task {
         this.taskCompleted = false;
         this.comments = new ArrayList<>();
     }
-
     public Integer getTaskID() {
         return taskID;
     }
@@ -38,6 +37,7 @@ public class Task {
         return assignedUsers;
     }
 
+
     public Priority getPriority() {
         return priority;
     }
@@ -46,11 +46,14 @@ public class Task {
         return taskCompleted;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
 
-    public void setTaskID(Integer taskID) {
+   
+
+    //public List<Comment> getComments() {
+      //  return comments;
+    //}
+
+   public void setTaskID(Integer taskID) {
         this.taskID = taskID;
     }
 
@@ -63,7 +66,7 @@ public class Task {
                 ", assignedUsers=" + assignedUsers +
                 ", priority=" + priority +
                 ", taskCompleted=" + taskCompleted +
-                ", comments=" + comments +
+      //          ", comments=" + comments +
                 '}';
     }
 }

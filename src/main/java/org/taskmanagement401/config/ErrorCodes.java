@@ -5,7 +5,8 @@ public enum ErrorCodes {
     WRONGLOGIN("The length of login must be les then 20 and more then 5 letters.",401),
     WRONGPASSLENGTH("The length of password must be les then 20 and more then 5 letters.",402),
     WRONGPASSCOMBINATION("The password must contain letters and numbers.",403),
-    WRONGNEWLOGIN("The user with your login is already exist. Registration is imposible.",404);
+    WRONGNEWLOGIN("The user with your login is already exist. Registration is impossible.",404),
+    WRONGLOGINDATA("Login or password is wrong.",405);
     private String description;
     private int statusCode;
 

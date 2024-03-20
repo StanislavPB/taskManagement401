@@ -6,6 +6,9 @@ package org.taskmanagement401.service.manus;
 
 
 import org.taskmanagement401.config.MenusItems;
+import org.taskmanagement401.dto.ResponseDTO;
+import org.taskmanagement401.entity.User;
+import org.taskmanagement401.service.AuthorizationService;
 import org.taskmanagement401.service.RegistrationService;
 import org.taskmanagement401.service.ServicesGeneration;
 import org.taskmanagement401.service.util.UserTalkService;
@@ -21,8 +24,10 @@ public class MainMenu {
     private MenusItems items=new MenusItems();
     private ArrayList<String> maneMenu= items.getMenu("Main");
     private RegistrationService registrationService;
+    private AuthorizationService authorizationService;
     public MainMenu(ServicesGeneration services) {
         registrationService=new RegistrationService(services.getUserRepository());
+        authorizationService=new AuthorizationService(services.getUserRepository());
         int userAnswer=0;
         while (userAnswer!=maneMenu.size()){
             menu.printMenu(maneMenu);
@@ -37,17 +42,27 @@ public class MainMenu {
                 break;
             case 1:
                 UserTalkService.registrationInstructions();
-                System.out.println(registrationService.registration());
-                EmployeeMenu employeeMenu=new EmployeeMenu();
-
+                ResponseDTO response=registrationService.registration();
+                if(response.getCode()==400){
+                    System.out.println(response.getAnswer());
+                }else{
+                    User user =(User) response.getAnswer();
+                    EmployeeMenu employeeMenu=new EmployeeMenu(user);
+                }
                 break;
             case 2:
-                int status=1;
-                if(status==1){
-                    BossMenu bossMenu=new BossMenu();
-                }else {
-                    employeeMenu = new EmployeeMenu();
+               ResponseDTO responseAuthorization=authorizationService.verification();
+                if(responseAuthorization.getCode()==400){
+                    System.out.println(responseAuthorization.getAnswer());
+                }else{
+                    User user =(User) responseAuthorization.getAnswer();
+                    if(user.getStatus()==2) {
+                        EmployeeMenu employeeMenu = new EmployeeMenu(user);
+                    }else{
+                        BossMenu bossMenu=new BossMenu();
+                    }
                 }
+
                 break;
         }
     }

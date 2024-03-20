@@ -9,34 +9,29 @@ import org.taskmanagement401.repository.UserRepository;
 import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.UserValidation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RegistrationService {
-
+public class AuthorizationService {
     private UserValidation validation=new UserValidation();
     private UserRepository repository;
 
-    public RegistrationService(UserRepository repository) {
-
+    public AuthorizationService(UserRepository repository) {
         this.repository = repository;
     }
-
-    public ResponseDTO registration(){
-        UserDto dto=UserTalkService.getUserParameters(true);
-        List<ErrorDto> errors=validation.checkUser(dto);
-        if(errors.isEmpty()){
-            Optional<User> user=repository.addNewUser(dto);
-            if(user.isEmpty()){
-                errors.add(new ErrorDto(ErrorCodes.WRONGNEWLOGIN.getStatusCode(),
-                        ErrorCodes.WRONGNEWLOGIN.getDescription()));
-                return new ResponseDTO<>(400,errors);
-            }else{
-                return new ResponseDTO<>(200,user.get());
-            }
-
-        }else{
+    public ResponseDTO verification(){
+        UserDto dto= UserTalkService.getUserParameters(false);
+        Optional<User>user =repository.getUserIdByLoginAndPassword(dto);
+        if(user.isEmpty()){
+            List<ErrorDto> errors =new ArrayList<>();
+            errors.add(new ErrorDto(ErrorCodes.WRONGLOGINDATA.getStatusCode(),
+                    ErrorCodes.WRONGLOGINDATA.getDescription()));
             return new ResponseDTO<>(400,errors);
+        }else{
+            return new ResponseDTO<>(200,user.get());
         }
+
     }
+
 }

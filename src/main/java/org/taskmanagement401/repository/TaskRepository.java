@@ -12,10 +12,10 @@ public class TaskRepository implements TaskRepositoryInterface {
    private final List<Task> tasks;
     private Integer id = 0;
 
+
     public TaskRepository() {
         this.tasks = new ArrayList<>();
     }
-
     @Override
     public Task add(Task newTask) {
         newTask.setTaskID(++id);

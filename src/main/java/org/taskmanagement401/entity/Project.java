@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Project {
 
-    private String id;
+    private int id;
     private String name;
     private String discription;
-    //private List<User> users;
-    //private List<Task> tasks;
+    private List<User> users;
+    private List<Task> tasks;
     private boolean status;
 
     /*на коллекции не добавляла пока Getter&Setter, а сами поля закомментировала, потому что ошибку выдает -
@@ -18,13 +18,13 @@ public class Project {
      */
 
 
-    public Project(String id, String name, String discription) {
+    public Project(int id, String name, String discription) {
         this.id = id;
         this.name = name;
         this.discription = discription;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -36,12 +36,34 @@ public class Project {
         return discription;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", discription='" + discription + '\'' +
+                ", users=" + users +
+                ", tasks=" + tasks +
                 ", status=" + status +
                 '}';
     }
@@ -57,5 +79,7 @@ public class Project {
     public int hashCode() {
         return Objects.hash(id, name, discription, status);
     }
+
+
 }
 
