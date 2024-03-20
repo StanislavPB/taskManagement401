@@ -63,4 +63,8 @@ public class UserRepository {
             return Optional.empty();
 
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
 }
