@@ -11,7 +11,7 @@ public class Task {
     private List<User> assignedUsers;
     private Priority priority;
     private boolean taskCompleted;
-     //private List<Comment> comments;
+    private List<Comment> comments;
 
     public Task( String taskName, LocalDate endDate, Priority priority) {
         this.taskName = taskName;
