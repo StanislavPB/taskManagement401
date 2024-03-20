@@ -36,8 +36,11 @@ public class BossMenu {
             case 1:
                 UserTalkService.projectInformation();
                 ProjectAddService addService=new ProjectAddService(projectRepository);
-                ResponseDTO dto=addService.registration();
-                System.out.println(dto);
+                System.out.println("test1");
+                ProjectDto dto= UserTalkService.getProjectParameters();
+                ResponseDTO dtoResponse=
+                        addService.registration(dto);
+               // System.out.println(dtoResponse);*/
                 //ProjectDto dto= UserTalkService.getProjectParameters();
 
                 break;

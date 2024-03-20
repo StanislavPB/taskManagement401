@@ -49,17 +49,17 @@ public class MainMenu {
                     System.out.println(response.getAnswer());
                 }else{
                     User user =(User) response.getAnswer();
-                    EmployeeMenu employeeMenu=new EmployeeMenu(user);
+                    EmployeeMenu employeeMenu=new EmployeeMenu(user,servicesGeneration);
                 }
                 break;
             case 2:
-               ResponseDTO responseAuthorization=authorizationService.verification();
+                ResponseDTO responseAuthorization=authorizationService.verification();
                 if(responseAuthorization.getCode()==400){
                     System.out.println(responseAuthorization.getAnswer());
                 }else{
                     User user =(User) responseAuthorization.getAnswer();
                     if(user.getStatus()==2) {
-                        EmployeeMenu employeeMenu = new EmployeeMenu(user);
+                        EmployeeMenu employeeMenu = new EmployeeMenu(user,servicesGeneration);
                     }else{
                         BossMenu bossMenu=new BossMenu(user,servicesGeneration);
                     }
