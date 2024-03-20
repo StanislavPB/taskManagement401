@@ -31,6 +31,18 @@ public class ProjectRepository
         }
 
 
+    public boolean updateProjectDescription(int projectId, String newDescription) {
+        for (Project project : projects) {
+            if (project.getId() == projectId) {
+                project.setDiscription(newDescription);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
    // @Override
     public Optional<Project> findById(int id) {
         for (Project project : projects) {
