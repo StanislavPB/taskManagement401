@@ -22,6 +22,6 @@ public class TestPreloader {
         dto=new UserDto("Kolesnichenko T","Kolesnichenko","password8");
         mainServices.getUserRepository().addNewUser(dto);
         dto=new UserDto("Ivanov I(Boss)","leader","password9");
-        mainServices.getUserRepository().addNewUser(dto);
+        mainServices.getUserRepository().addNewUser(dto,true);
     }
 }

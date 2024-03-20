@@ -9,6 +9,7 @@ public class ResponseDTO<T> {
     public ResponseDTO(Integer code, T answer) {
         this.code = code;
         this.answer = answer;
+
     }
 
     public Integer getCode() {

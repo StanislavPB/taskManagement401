@@ -1,5 +1,6 @@
 package org.taskmanagement401.service.util;
 
+import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.UserDto;
 
 public class UserTalkService {
@@ -17,5 +18,16 @@ public class UserTalkService {
         System.out.println("The login and the password must have from 6 to 20 letters.");
         System.out.println("The password must contains letters and numbers." );
         System.out.println();
+    }
+    public static void projectInformation(){
+        System.out.println("The name must have from 3 to 20 letters.");
+        System.out.println("Description length must be longer then 10 letters.");
+        System.out.println();
+    }
+    public static ProjectDto getProjectParameters(){
+        String name="";
+        name=UserInput.inputText("Enter name of project");
+        String description=UserInput.inputText("Enter description");
+        return new ProjectDto(name,description);
     }
 }

@@ -23,7 +23,7 @@ public class UserRepository {
     }
 
     public Optional<User> addNewUser(UserDto dto){
-            Optional<User>user=createNewUser(dto);
+            Optional<User>user=createNewUser(dto,false);
             if(user.isEmpty()){
                 return Optional.empty();
             }else{
@@ -31,10 +31,25 @@ public class UserRepository {
                 return user;
             }
     }
-    private Optional<User> createNewUser(UserDto dto){
+    public Optional<User> addNewUser(UserDto dto,boolean boss){
+        Optional<User>user=createNewUser(dto,boss);
+        if(user.isEmpty()){
+            return Optional.empty();
+        }else{
+            users.add(user.get());
+            return user;
+        }
+    }
+    private Optional<User> createNewUser(UserDto dto,boolean boss){
         if (findUserByLogin(dto.getLogin()).isEmpty()){
             currentId++;
-            User user=new User(currentId,dto.getName(),dto.getLogin(),dto.getPassword(),2);
+            User user;
+            if(boss) {
+                user = new User(currentId, dto.getName(),
+                        dto.getLogin(), dto.getPassword(), 1);
+            }else{
+                user = new User(currentId, dto.getName(), dto.getLogin(), dto.getPassword(), 2);
+            }
             return Optional.of(user);
         }
         return Optional.empty();

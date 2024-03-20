@@ -1,5 +1,6 @@
 package org.taskmanagement401.dto;
 
+import org.taskmanagement401.entity.Comment;
 import org.taskmanagement401.entity.Priority;
 import org.taskmanagement401.entity.Prority;
 import org.taskmanagement401.entity.User;

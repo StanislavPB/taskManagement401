@@ -25,7 +25,9 @@ public class MainMenu {
     private ArrayList<String> maneMenu= items.getMenu("Main");
     private RegistrationService registrationService;
     private AuthorizationService authorizationService;
+    private  ServicesGeneration servicesGeneration;
     public MainMenu(ServicesGeneration services) {
+        servicesGeneration=services;
         registrationService=new RegistrationService(services.getUserRepository());
         authorizationService=new AuthorizationService(services.getUserRepository());
         int userAnswer=0;
@@ -59,7 +61,7 @@ public class MainMenu {
                     if(user.getStatus()==2) {
                         EmployeeMenu employeeMenu = new EmployeeMenu(user);
                     }else{
-                        BossMenu bossMenu=new BossMenu();
+                        BossMenu bossMenu=new BossMenu(user,servicesGeneration);
                     }
                 }
 

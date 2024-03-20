@@ -1,12 +1,17 @@
 package org.taskmanagement401.repository;
 
+import org.taskmanagement401.dto.ProjectDto;
+import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.Project;
+import org.taskmanagement401.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ProjectRepository implements ProjectRepositoryInterface {
+public class ProjectRepository
+        //implements ProjectRepositoryInterface
+{
 
     private final List<Project> projects;
     private int currentId = 0;
@@ -15,14 +20,18 @@ public class ProjectRepository implements ProjectRepositoryInterface {
         this.projects = new ArrayList<>();
     }
 
-    @Override
-    public void addProject(Project newProject) {
-        currentId++;
-        projects.add(new Project(currentId, newProject.getName(), newProject.getDiscription()));
+    //@Override
+    public boolean addProject(ProjectDto dto) {
+        Project project=createNewProject(dto);
+        projects.add(project);
+        return true;
     }
+    private Project createNewProject(ProjectDto dto){
+            return new Project(currentId++, dto.getName(), dto.getDescription());
+        }
 
 
-    @Override
+   // @Override
     public Optional<Project> findById(int id) {
         for (Project project : projects) {
             if (project.getId() == id) {
@@ -32,7 +41,7 @@ public class ProjectRepository implements ProjectRepositoryInterface {
         return Optional.empty();
     }
 
-    @Override
+    //@Override
     public Optional<Project> findByName(String name) {
         for (Project project : projects) {
             if (project.getName().equalsIgnoreCase(name)) {
@@ -42,12 +51,12 @@ public class ProjectRepository implements ProjectRepositoryInterface {
         return Optional.empty();
     }
 
-    @Override
+    //@Override
     public List<Project> findAll() {
         return new ArrayList<>(projects);
     }
 
-    @Override
+    //@Override
     public void deleteById(int id) {
         projects.removeIf(project -> project.getId() == id);
     }
