@@ -16,11 +16,14 @@ public class ProjectAddService {
     ProjectRepository projectRepository;
 
     public ProjectAddService(ProjectRepository projectRepository) {
+
         this.projectRepository = projectRepository;
     }
-    public ResponseDTO registration(){
-        ProjectDto dto= UserTalkService.getProjectParameters();
-        List<ErrorDto> errors=validation.checkProject(dto);
+    public ResponseDTO registration(ProjectDto dto){
+
+         List<ErrorDto> errors=
+                validation.
+                        checkProject(dto);
         if(errors.isEmpty()){
             if(projectRepository.addProject(dto)){
                 return new ResponseDTO<>(200,"status ok");

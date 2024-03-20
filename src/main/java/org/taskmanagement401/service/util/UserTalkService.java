@@ -2,6 +2,9 @@ package org.taskmanagement401.service.util;
 
 import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.UserDto;
+import org.taskmanagement401.entity.Project;
+
+import java.util.List;
 
 public class UserTalkService {
     public static UserDto getUserParameters(boolean getWithUserName){
@@ -29,5 +32,14 @@ public class UserTalkService {
         name=UserInput.inputText("Enter name of project");
         String description=UserInput.inputText("Enter description");
         return new ProjectDto(name,description);
+    }
+    public static void printAllProjects(List<Project> projects){
+        for(Project project:projects){
+            if(!project.isStatus()){
+                System.out.println(project.getId()+" "+project.getName());
+            }
+        }
+     // public int getAnswer ukazali id projecra
+     //
     }
 }
