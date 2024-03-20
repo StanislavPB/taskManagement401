@@ -9,17 +9,31 @@ public class MenusItems {
 
     public MenusItems() {
         ArrayList<String> menu=new ArrayList<>(Arrays.
-                asList("Registration","Authorization","Exit"));
+                asList( "Registration",
+                        "Authorization",
+                        "Exit"));
         menus.put("Main",menu);
+
+
         menu=new ArrayList<>(Arrays.
-                asList("Add project","Editing project","Add task","Add user",
-                        "Add users to project", "Check projects", "Chat",
-                        "Exit"));
+        asList( "Add project",
+                "Editing project",
+                "Add task",
+                "Add user",
+                "Add user to task",
+                "Check progress of projects",
+                "Chat",
+                "Exit"));
         menus.put("Chef",menu);
+
         menu=new ArrayList<>(Arrays.
-                asList("Get tasks","Comment task","Change task status","Chat",
-                        "Exit"));
+        asList( "Get tasks",
+                "Comment task",
+                "Change task status",
+                "Chat",
+                "Exit"));
         menus.put("Employee",menu);
+
 
     }
     public  ArrayList<String> getMenu(String menuItem){
