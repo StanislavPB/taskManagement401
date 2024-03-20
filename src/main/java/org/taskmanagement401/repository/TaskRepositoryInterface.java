@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface TaskRepositoryInterface {
     public Task add(Task newTask);
 
-    public Optional<Task> findById(String id);
+    public Optional<Task> findById(Integer id);
 
     public Optional<Task> findByName(String taskName);
 

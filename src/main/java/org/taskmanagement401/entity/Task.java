@@ -5,25 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task {
-    private String taskID;
+    private Integer taskID;
     private String taskName;
     private LocalDate endDate;
     private List<User> assignedUsers;
-    private Prority priority;
+    private Priority priority;
     private boolean taskCompleted;
-    //private List<Comment> comments;
+     //private List<Comment> comments;
 
-    public Task(String taskID, String taskName, LocalDate endDate, Prority priority) {
-        this.taskID = taskID;
+    public Task( String taskName, LocalDate endDate, Priority priority) {
         this.taskName = taskName;
         this.endDate = endDate;
         this.assignedUsers = new ArrayList<>();
         this.priority = priority;
         this.taskCompleted = false;
-      //  this.comments = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
-
-    public String getTaskID() {
+    public Integer getTaskID() {
         return taskID;
     }
 
@@ -39,7 +37,8 @@ public class Task {
         return assignedUsers;
     }
 
-    public Prority getPriority() {
+
+    public Priority getPriority() {
         return priority;
     }
 
@@ -47,11 +46,14 @@ public class Task {
         return taskCompleted;
     }
 
+
+   
+
     //public List<Comment> getComments() {
       //  return comments;
     //}
 
-    public void setTaskID(String taskID) {
+   public void setTaskID(Integer taskID) {
         this.taskID = taskID;
     }
 
