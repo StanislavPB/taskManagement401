@@ -81,5 +81,8 @@ public class Project {
     }
 
 
+    public void setDiscription(String discription) {
+        this.discription = discription;
+    }
 }
 
