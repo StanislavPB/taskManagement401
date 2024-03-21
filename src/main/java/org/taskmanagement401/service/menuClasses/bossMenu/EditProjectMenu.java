@@ -5,48 +5,34 @@ import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.service.ProjectEditService;
 import org.taskmanagement401.service.util.UserInput;
+import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.ProjectValidation;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EditProjectMenu {
 
     public EditProjectMenu(ProjectRepository projectRepository) {
         System.out.println("Select a project to edit:");
         List<Project> projects = projectRepository.findAll();
-        // Перебирает список проектов и выводит их названия с индексом для выбора
+        UserTalkService.printAllProjects(projects);
 
-        // общий метод
-        // UserTalkService.printAllProjects(projects);
+        int projectChoice = UserInput.inputPositiveInt("Choose a project by ID to edit: ");
 
-        for (int i = 0; i < projects.size(); i++) {
-            System.out.println((i + 1) + ". " + projects.get(i).getName());
-        }
+        Optional<Project> optionalProject = projects.stream()
+                .filter(project -> project.getId() == projectChoice)
+                .findFirst();
 
+        if (optionalProject.isPresent()) {
 
+            Project selectedProject = optionalProject.get();
 
-        int projectChoice = UserInput.inputPositiveInt("Choose a project by number:") - 1;
-        // Проверяет, что выбранный номер проекта находится в допустимом диапазоне
-        if (projectChoice >= 0 && projectChoice < projects.size()) {
-            // Получает выбранный проект из списка
+            System.out.println("Current description: " + selectedProject.getDiscription());
 
+            String newDescription = UserInput.inputText("Enter new description: ");
 
-            // если только актуальные проекты не сработает
-
-
-            Project selectedProject = projects.get(projectChoice);
-
-            //Добавляем вывод текущего описания
-            // Работаем через ПДО
-
-            String newDescription = UserInput.inputText("Enter new description:");
-
-            // валидация внутри это фронт
-
-            ProjectEditService editService = new ProjectEditService(projectRepository,
-                    new ProjectValidation());
-
-            // не нужно обьявлять стринг
+            ProjectEditService editService = new ProjectEditService(projectRepository);
 
             ResponseDTO<String> response = editService.editProjectDescription(selectedProject.getId(), newDescription);
             System.out.println(response.getAnswer());
