@@ -4,11 +4,12 @@ import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 public class UserRepository {
-    private List<User> users=new ArrayList<>();
+    private HashMap<Integer,User> users=new HashMap<>();
     private int currentId=0;
     public Optional<User> getUserIdByLoginAndPassword(UserDto dto){
         Optional<User> user=findUserByLogin(dto.getLogin());
@@ -27,7 +28,7 @@ public class UserRepository {
             if(user.isEmpty()){
                 return Optional.empty();
             }else{
-                users.add(user.get());
+                users.put(user.get().getId(),user.get());
                 return user;
             }
     }
@@ -36,7 +37,7 @@ public class UserRepository {
         if(user.isEmpty()){
             return Optional.empty();
         }else{
-            users.add(user.get());
+            users.put(user.get().getId(),user.get());
             return user;
         }
     }
@@ -55,16 +56,26 @@ public class UserRepository {
         return Optional.empty();
     }
     private Optional<User> findUserByLogin(String login) {
-           for (User user : users) {
-                if (user.getLogin().equals(login)) {
-                    return Optional.of(user);
-                }
+        for (User user : users.values()) {
+            if (user.getLogin().equals(login)) {
+                return Optional.of(user);
             }
-            return Optional.empty();
-
+        }
+        return Optional.empty();
     }
 
     public List<User> getUsers() {
-        return users;
+        if(users.isEmpty()){
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(users.values());
     }
+    public Optional<User> getUserById(int id){
+        if(users.containsKey(id)){
+            return Optional.of(users.get(id));
+        }else{
+            return Optional.empty();
+        }
+    }
+
 }
