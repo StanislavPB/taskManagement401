@@ -40,11 +40,15 @@ public class EmployeeMenu {
                 break;
             case 2:
                 //CommentMenu commentMenu=new CommentMenu(user,)
-                ProjectRepository repository=servicesGeneration.getProjectRepository();
-                 UserTalkService.printAllProjects(repository.findAll());
+               // ProjectRepository repository=servicesGeneration.getProjectRepository();
+                // UserTalkService.printAllProjects(repository.findAll());
                  //id project!!!!!! getanwer
                  // if id=-1 Optional sout err
                 // else po id poluchaem Project!!!!!
+
+                CommentMenu commentMenu = new CommentMenu( user ,servicesGeneration.getProjectRepository(),
+                        servicesGeneration.getTaskRepository(),servicesGeneration.getCommentRepository(),
+                        servicesGeneration.getUserRepository());
 
                 // TaskRepository repository=servicesGeneration.getTASKRepository(project!!!!!!);
                 //    UserTalkService.printAllProjects(repository.findAll());

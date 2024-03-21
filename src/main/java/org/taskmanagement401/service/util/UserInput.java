@@ -8,6 +8,7 @@ public class UserInput {
         Scanner ns=new Scanner(System.in);
         return ns.nextLine();
     }
+
     public static int inputPositiveInt(String text){
         System.out.println(text);
         Scanner ns=new Scanner(System.in);
@@ -41,5 +42,13 @@ public class UserInput {
             }
         }
         return test;
+    }
+
+    public static int inputInteger(String text) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(text);
+        int inputInteger = scanner.nextInt();
+        return inputInteger;
     }
 }
