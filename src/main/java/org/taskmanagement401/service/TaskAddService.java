@@ -1,10 +1,10 @@
 package org.taskmanagement401.service;
 
 
-import org.taskmanagement401.config.ErrorCodes;
 import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.dto.error.ErrorDto;
+import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.repository.TaskRepository;
 import org.taskmanagement401.service.validation.TaskValidation;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TaskAddService {
     private final TaskRepository taskRepository;
-    private TaskValidation taskValidation;
+    private TaskValidation taskValidation = new TaskValidation();
 
 
     public TaskAddService(TaskRepository repository) {
@@ -22,18 +22,12 @@ public class TaskAddService {
     public ResponseDTO registration(TaskDto dto) {
         List<ErrorDto> errors = taskValidation.checkTask(dto);
         if (errors.isEmpty()) {
-            if (taskRepository.addTask(dto)) {
-                return new ResponseDTO<>(200, "Task added!");
-            } else {
-                errors.add(new ErrorDto(ErrorCodes.ADDINGFAIL.getStatusCode(),
-                        ErrorCodes.ADDINGFAIL.getDescription()));
-                return new ResponseDTO<>(400, errors);
-            }
+            Task task = taskRepository.addTask(dto);
+            return new ResponseDTO(200, task);
         } else {
             return new ResponseDTO<>(400, errors);
         }
 
 
     }
-
 }

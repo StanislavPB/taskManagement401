@@ -1,5 +1,6 @@
 package org.taskmanagement401.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +23,8 @@ public class Project {
         this.id = id;
         this.name = name;
         this.discription = discription;
+        this.users = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public int getId() {

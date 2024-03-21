@@ -1,11 +1,13 @@
 package org.taskmanagement401.service.util;
 
 import org.taskmanagement401.dto.ProjectDto;
+import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.Task;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -37,6 +39,12 @@ public class UserTalkService{
         String description=UserInput.inputText("Enter description");
         return new ProjectDto(name,description);
     }
+    public  static TaskDto getTaskParameters(){
+        String name= UserInput.inputText("Enter name of Task");
+        LocalDate date = UserInput.inputDate("Enter deadline date in format dd.mm.yy");
+        int priority = UserInput.inputInteger("Enter priority(Use 3 for High priority, 2 - Medium, 1 - Low)");
+        return new TaskDto(name, date, priority);
+    }
     public static void taskInformation(){
         System.out.println("The task name should be from 3 to 20 letters.");
         System.out.println("Enter your date in (dd.mm.yy) format");
@@ -54,10 +62,10 @@ public class UserTalkService{
     }
 
     public static void printAllTasks(List<Task> tasks){
-        Collections.sort(tasks, Comparator.comparing(Task::getPriority).reversed());
+        tasks.sort(Comparator.comparing(Task::getPriority).reversed());
         for(Task task : tasks){
             if(!task.isTaskCompleted()){
-                System.out.println(task.getPriority()+"/"+task.getTaskID()+"/"+ task.getTaskName() + "/" + task.getEndDate());
+                System.out.println(task.getTaskID()+" "+ task.getTaskName() + " "+ task.getPriority()+" "+ task.getEndDate());
             }
         }
     }
