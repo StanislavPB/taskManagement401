@@ -1,5 +1,6 @@
 package org.taskmanagement401.entity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class User {
     private String login;
     private String password;
     private int status;
-    private HashMap<Integer,Task> tasks=new HashMap<>();
+    private List<Task> task=new ArrayList<>();
 
     public User(int id, String name, String login, String password, int status) {
         this.id = id;
@@ -37,5 +38,9 @@ public class User {
 
     public int getStatus() {
         return status;
+    }
+
+    public List<Task> getTask() {
+        return task;
     }
 }
