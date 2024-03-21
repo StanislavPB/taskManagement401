@@ -18,4 +18,5 @@ public class PrintActiveProjects {
                 .filter(project -> project.getId() == projectChoice)
                 .findFirst();
     }
+
 }
