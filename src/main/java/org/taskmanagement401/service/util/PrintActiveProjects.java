@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public class PrintActiveProjects {
     public static Optional<Project> print(ProjectRepository projectRepository){
-        System.out.println("Select a project to edit:");
         List<Project> projects = projectRepository.findAll();
         UserTalkService.printAllProjects(projects);
 

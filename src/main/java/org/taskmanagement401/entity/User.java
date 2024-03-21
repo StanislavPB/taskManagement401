@@ -1,11 +1,15 @@
 package org.taskmanagement401.entity;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class User {
     private int id;
     private String name;
     private String login;
     private String password;
     private int status;
+    private HashMap<Integer,Task> tasks=new HashMap<>();
 
     public User(int id, String name, String login, String password, int status) {
         this.id = id;
