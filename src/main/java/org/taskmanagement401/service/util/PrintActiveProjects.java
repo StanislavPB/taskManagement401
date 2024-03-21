@@ -1,0 +1,22 @@
+package org.taskmanagement401.service.util;
+
+import org.taskmanagement401.entity.Project;
+import org.taskmanagement401.repository.ProjectRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public class PrintActiveProjects {
+    public static Optional<Project> print(ProjectRepository projectRepository){
+        System.out.println("Select a project to edit:");
+        List<Project> projects = projectRepository.findAll();
+        UserTalkService.printAllProjects(projects);
+
+        int projectChoice = UserInput.inputPositiveInt("Choose a project by ID to edit: ");
+
+
+        return  projects.stream()
+                .filter(project -> project.getId() == projectChoice)
+                .findFirst();
+    }
+}
