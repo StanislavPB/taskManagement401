@@ -10,7 +10,7 @@ public enum ErrorCodes {
     WRONGDESCRIPTIONLENGTH("Description length must be longer then 10 letters.",406),
     WRONGDATE("Date can't be in the past",407),
     WRONGPRIORITYSTATUS("Wrong status",408),
-    ADDEDFAIL("Didn't added",409);
+    ADDINGFAIL("Didn't add",409);
     private String description;
     private int statusCode;
 

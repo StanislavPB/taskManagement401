@@ -3,19 +3,16 @@ package org.taskmanagement401.repository;
 import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.entity.Task;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TaskRepository {
 
-   private final List<Task> tasks;
+   private final HashMap<Integer,Task> tasks;
     private Integer id = 0;
 
 
     public TaskRepository() {
-        this.tasks = new ArrayList<>();
+        this.tasks = new HashMap<>();
     }
 
     private Task createNewTask(TaskDto dto){
@@ -23,23 +20,19 @@ public class TaskRepository {
     }
     public boolean addTask(TaskDto newTask) {
         Task task = createNewTask(newTask);
-        tasks.add(task);
+        tasks.put(task.getTaskID(), task);
         return true;
     }
 
 
     public Optional<Task> findById(Integer taskId) {
-        for (Task task : tasks) {
-            if (task.getTaskID().equals(taskId)) {
-                return Optional.of(task);
-            }
-        }
-        return Optional.empty();
+        Task task = tasks.get(taskId);
+        return Optional.ofNullable(task);
     }
 
 
     public Optional<Task> findByName(String taskName) {
-        for (Task task : tasks) {
+        for (Task task : tasks.values()) {
             if (task.getTaskName().equals(taskName)) {
                 return Optional.of(task);
             }
@@ -49,16 +42,11 @@ public class TaskRepository {
 
 
     public List<Task> findAll() {
-        return tasks;
+        return new ArrayList<>(tasks.values());
     }
 
 
     public void delete(String taskId) {
-        for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext();) {
-            Task task = iterator.next();
-            if (task.getTaskID().equals(taskId)) {
-                iterator.remove();
-            }
-        }
+        tasks.remove(taskId);
     }
 }

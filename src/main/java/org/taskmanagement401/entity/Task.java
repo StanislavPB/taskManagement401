@@ -3,6 +3,7 @@ package org.taskmanagement401.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Task {
     private Integer taskID;
@@ -62,6 +63,18 @@ public class Task {
             return Priority.LOW;
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Task task)) return false;
+        return Objects.equals(taskID, task.taskID) && Objects.equals(taskName, task.taskName) && Objects.equals(assignedUsers, task.assignedUsers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskID, taskName, assignedUsers);
     }
 
     @Override

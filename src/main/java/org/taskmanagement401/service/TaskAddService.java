@@ -25,8 +25,8 @@ public class TaskAddService {
             if (taskRepository.addTask(dto)) {
                 return new ResponseDTO<>(200, "Task added!");
             } else {
-                errors.add(new ErrorDto(ErrorCodes.ADDEDFAIL.getStatusCode(),
-                        ErrorCodes.ADDEDFAIL.getDescription()));
+                errors.add(new ErrorDto(ErrorCodes.ADDINGFAIL.getStatusCode(),
+                        ErrorCodes.ADDINGFAIL.getDescription()));
                 return new ResponseDTO<>(400, errors);
             }
         } else {
