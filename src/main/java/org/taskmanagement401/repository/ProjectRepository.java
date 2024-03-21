@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ProjectRepository
         //implements ProjectRepositoryInterface
@@ -66,6 +67,12 @@ public class ProjectRepository
     //@Override
     public List<Project> findAll() {
         return new ArrayList<>(projects.values());
+    }
+
+    public List<Project> findAllActiveProjects() {
+        return projects.values().stream()
+                .filter(project -> !project.isStatus())
+                .collect(Collectors.toList());
     }
 
     //@Override
