@@ -1,8 +1,13 @@
 package org.taskmanagement401.config;
 
 import org.taskmanagement401.dto.ProjectDto;
+import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.dto.UserDto;
+import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.service.ServicesGeneration;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 public class TestPreloader {
     public TestPreloader(ServicesGeneration mainServices) {
@@ -24,11 +29,40 @@ public class TestPreloader {
         mainServices.getUserRepository().addNewUser(dto);
         dto=new UserDto("Ivanov I(Boss)","leader","password9");
         mainServices.getUserRepository().addNewUser(dto,true);
+
+
         mainServices.getProjectRepository().addProject(new ProjectDto("Project1",
                 "This is project 1"));
         mainServices.getProjectRepository().addProject(new ProjectDto("Project2",
                 "This is project 2"));
         mainServices.getProjectRepository().addProject(new ProjectDto("Project3",
                 "This is project 3"));
+
+        mainServices.getTaskRepository().addTask(new TaskDto("Task1",LocalDate.of(2024,3,21),1));
+        mainServices.getTaskRepository().addTask(new TaskDto("Task2",LocalDate.of(2024,2,21),2));
+        mainServices.getTaskRepository().addTask(new TaskDto("Task3",LocalDate.of(2024,1,21),3));
+
+        mainServices.getProjectRepository().findById(1).get().getTasks().add(
+                mainServices.getTaskRepository().findById(1).get()
+        );
+        mainServices.getProjectRepository().findById(2).get().getTasks().add(
+                mainServices.getTaskRepository().findById(2).get()
+        );
+        mainServices.getProjectRepository().findById(3).get().getTasks().add(
+                mainServices.getTaskRepository().findById(3).get()
+        );
+
+        mainServices.getTaskRepository().findById(1).get().getAssignedUsers().add(
+                mainServices.getUserRepository().getUserById(1).get()
+        );
+        mainServices.getTaskRepository().findById(2).get().getAssignedUsers().add(
+                mainServices.getUserRepository().getUserById(2).get()
+        );
+        mainServices.getTaskRepository().findById(2).get().getAssignedUsers().add(
+                mainServices.getUserRepository().getUserById(2).get()
+        );
+
+
+
     }
 }
