@@ -3,6 +3,7 @@ package org.taskmanagement401.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Task {
     private Integer taskID;
@@ -13,14 +14,13 @@ public class Task {
     private boolean taskCompleted;
     private List<Comment> comments;
 
-    public Task( String taskName, LocalDate endDate, Priority priority) {
+    public Task(Integer taskID, String taskName, LocalDate endDate, int statusPriority) {
+        this.taskID = taskID;
         this.taskName = taskName;
+        this.priority = fromStatusPriority(statusPriority);
         this.endDate = endDate;
-        this.assignedUsers = new ArrayList<>();
-        this.priority = priority;
-        this.taskCompleted = false;
-        this.comments = new ArrayList<>();
     }
+
     public Integer getTaskID() {
         return taskID;
     }
@@ -46,15 +46,35 @@ public class Task {
         return taskCompleted;
     }
 
-
-   
-
-    //public List<Comment> getComments() {
-      //  return comments;
-    //}
+    public List<Comment> getComments() {
+        return comments;
+    }
 
    public void setTaskID(Integer taskID) {
         this.taskID = taskID;
+    }
+
+    public static Priority fromStatusPriority(int statusPriority) {
+        if (statusPriority == 1) {
+            return Priority.HIGH;
+        } else if (statusPriority == 2) {
+            return Priority.MEDIUM;
+        } else if (statusPriority == 3) {
+            return Priority.LOW;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Task task)) return false;
+        return Objects.equals(taskID, task.taskID) && Objects.equals(taskName, task.taskName) && Objects.equals(assignedUsers, task.assignedUsers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskID, taskName, assignedUsers);
     }
 
     @Override
@@ -66,7 +86,7 @@ public class Task {
                 ", assignedUsers=" + assignedUsers +
                 ", priority=" + priority +
                 ", taskCompleted=" + taskCompleted +
-      //          ", comments=" + comments +
+                ", comments=" + comments +
                 '}';
     }
 }
