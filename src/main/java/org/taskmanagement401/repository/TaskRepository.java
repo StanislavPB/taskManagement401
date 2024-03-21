@@ -1,41 +1,38 @@
 package org.taskmanagement401.repository;
 
+import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.entity.Task;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class TaskRepository implements TaskRepositoryInterface {
+public class TaskRepository {
 
-   private final List<Task> tasks;
+   private final HashMap<Integer,Task> tasks;
     private Integer id = 0;
 
 
     public TaskRepository() {
-        this.tasks = new ArrayList<>();
-    }
-    @Override
-    public Task add(Task newTask) {
-        newTask.setTaskID(++id);
-        tasks.add(newTask);
-        return newTask;
+        this.tasks = new HashMap<>();
     }
 
-    @Override
+    private Task createNewTask(TaskDto dto){
+        return new Task(++id, dto.getTaskName(), dto.getEndDate(), dto.getPriority().getStatusPriority());
+    }
+    public boolean addTask(TaskDto newTask) {
+        Task task = createNewTask(newTask);
+        tasks.put(task.getTaskID(), task);
+        return true;
+    }
+
+
     public Optional<Task> findById(Integer taskId) {
-        for (Task task : tasks) {
-            if (task.getTaskID().equals(taskId)) {
-                return Optional.of(task);
-            }
-        }
-        return Optional.empty();
+        Task task = tasks.get(taskId);
+        return Optional.ofNullable(task);
     }
 
-    @Override
+
     public Optional<Task> findByName(String taskName) {
-        for (Task task : tasks) {
+        for (Task task : tasks.values()) {
             if (task.getTaskName().equals(taskName)) {
                 return Optional.of(task);
             }
@@ -43,18 +40,13 @@ public class TaskRepository implements TaskRepositoryInterface {
         return Optional.empty();
     }
 
-    @Override
+
     public List<Task> findAll() {
-        return tasks;
+        return new ArrayList<>(tasks.values());
     }
 
-    @Override
+
     public void delete(String taskId) {
-        for (Iterator<Task> iterator = tasks.iterator(); iterator.hasNext();) {
-            Task task = iterator.next();
-            if (task.getTaskID().equals(taskId)) {
-                iterator.remove();
-            }
-        }
+        tasks.remove(taskId);
     }
 }
