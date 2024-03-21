@@ -12,9 +12,9 @@ public class ProjectEditService {
     private ProjectRepository projectRepository;
     private ProjectValidation validation;
 
-    public ProjectEditService(ProjectRepository projectRepository, ProjectValidation validation) {
+    public ProjectEditService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
-        this.validation = validation;
+        this.validation = new ProjectValidation();
     }
 
 
