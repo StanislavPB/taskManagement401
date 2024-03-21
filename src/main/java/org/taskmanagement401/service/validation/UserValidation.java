@@ -24,6 +24,14 @@ public class UserValidation {
         }
         return errors;
     }
+    public List<ErrorDto> checkUserAuthorization(UserDto dto){
+        List<ErrorDto> errors=new ArrayList<>();
+        if(dto.getLogin().isBlank() || dto.getPassword().isBlank()){
+            errors.add(new ErrorDto(ErrorCodes.WRONGLOGINDATA.getStatusCode(),
+                    ErrorCodes.WRONGLOGINDATA.getDescription()));
+        }
+        return errors;
+    }
     private boolean checkPass(String pass) {
         boolean letters = false;
         boolean numbers = false;

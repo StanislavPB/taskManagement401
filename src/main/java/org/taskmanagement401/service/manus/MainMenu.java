@@ -7,6 +7,7 @@ package org.taskmanagement401.service.manus;
 
 import org.taskmanagement401.config.MenusItems;
 import org.taskmanagement401.dto.ResponseDTO;
+import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.service.AuthorizationService;
 import org.taskmanagement401.service.RegistrationService;
@@ -44,7 +45,8 @@ public class MainMenu {
                 break;
             case 1:
                 UserTalkService.registrationInstructions();
-                ResponseDTO response=registrationService.registration();
+                UserDto dto=UserTalkService.getUserParameters(true);
+                ResponseDTO response=registrationService.registration(dto);
                 if(response.getCode()==400){
                     System.out.println(response.getAnswer());
                 }else{
@@ -53,7 +55,8 @@ public class MainMenu {
                 }
                 break;
             case 2:
-                ResponseDTO responseAuthorization=authorizationService.verification();
+                UserDto dtoAuthorization= UserTalkService.getUserParameters(false);
+                ResponseDTO responseAuthorization=authorizationService.verification(dtoAuthorization);
                 if(responseAuthorization.getCode()==400){
                     System.out.println(responseAuthorization.getAnswer());
                 }else{
