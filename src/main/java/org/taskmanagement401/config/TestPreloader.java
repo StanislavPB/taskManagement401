@@ -1,5 +1,6 @@
 package org.taskmanagement401.config;
 
+import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.service.ServicesGeneration;
 
@@ -23,5 +24,11 @@ public class TestPreloader {
         mainServices.getUserRepository().addNewUser(dto);
         dto=new UserDto("Ivanov I(Boss)","leader","password9");
         mainServices.getUserRepository().addNewUser(dto,true);
+        mainServices.getProjectRepository().addProject(new ProjectDto("Project1",
+                "This is project 1"));
+        mainServices.getProjectRepository().addProject(new ProjectDto("Project2",
+                "This is project 2"));
+        mainServices.getProjectRepository().addProject(new ProjectDto("Project3",
+                "This is project 3"));
     }
 }

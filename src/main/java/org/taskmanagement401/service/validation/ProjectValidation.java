@@ -18,7 +18,6 @@ public class ProjectValidation {
         if(dto.getName().length()<3 || dto.getName().length()>20){
             errors.add(new ErrorDto(ErrorCodes.WRONGNAME.getStatusCode(), ErrorCodes.WRONGNAME.getDescription()));
         }
-        System.out.println(errors);
         return errors;
     }
 
