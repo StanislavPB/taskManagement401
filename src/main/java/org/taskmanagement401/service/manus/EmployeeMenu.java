@@ -4,6 +4,9 @@ import org.taskmanagement401.config.MenusItems;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.service.ServicesGeneration;
+import org.taskmanagement401.service.menuClasses.employeeMenu.CommentMenu;
+import org.taskmanagement401.service.menuClasses.employeeMenu.GetTasksMenu;
+import org.taskmanagement401.service.menuClasses.employeeMenu.TaskStatusMenu;
 import org.taskmanagement401.service.util.UserTalkService;
 
 import java.util.ArrayList;
@@ -19,10 +22,10 @@ public class EmployeeMenu {
         while (userAnswer!=employeeMenu.size()){
             menu.printMenu(employeeMenu);
             userAnswer=menu.getUserChoice(employeeMenu.size());
-            manageMain(userAnswer);
+            manageMain(userAnswer,user);
         }
     }
-    private void manageMain(int answer){
+    private void manageMain(int answer, User user){
 
 
         switch (answer){
@@ -30,10 +33,13 @@ public class EmployeeMenu {
                 menu.printError();
                 break;
             case 1:
+                GetTasksMenu getTasksMenu=new GetTasksMenu(
+                        user,servicesGeneration.getProjectRepository(),
+                        servicesGeneration.getTaskRepository());
 
                 break;
             case 2:
-
+                //CommentMenu commentMenu=new CommentMenu(user,)
                 ProjectRepository repository=servicesGeneration.getProjectRepository();
                  UserTalkService.printAllProjects(repository.findAll());
                  //id project!!!!!! getanwer
@@ -54,6 +60,11 @@ public class EmployeeMenu {
 
 
                 //UserTaskService.
+                break;
+            case 3:
+                TaskStatusMenu taskStatusMenu= new TaskStatusMenu(user,
+                        servicesGeneration.getProjectRepository(),
+                        servicesGeneration.getTaskRepository());
                 break;
         }
     }

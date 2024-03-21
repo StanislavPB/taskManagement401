@@ -71,8 +71,9 @@ public class UserRepository {
         return new ArrayList<>(users.values());
     }
     public Optional<User> getUserById(int id){
-        if(users.containsKey(id)){
-            return Optional.of(users.get(id));
+        User user=users.get(id);
+        if(user != null){
+            return Optional.of(user);
         }else{
             return Optional.empty();
         }
