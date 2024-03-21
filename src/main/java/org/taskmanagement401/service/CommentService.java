@@ -24,5 +24,6 @@ public class CommentService {
         /*Comment newComment = commentCreate();
         commentRepository.add(newComment);*/
         return new ResponseDTO<>(200,"Status ok");
-    }}
+    }
+}
 

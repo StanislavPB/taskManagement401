@@ -1,4 +1,4 @@
-package org.taskmanagement401.service.manus;
+package org.taskmanagement401.service.menus;
 
 import org.taskmanagement401.config.MenusItems;
 import org.taskmanagement401.entity.User;
@@ -9,16 +9,16 @@ import org.taskmanagement401.service.util.UserTalkService;
 import java.util.ArrayList;
 
 public class EmployeeMenu {
-    private Menu menu=new Menu();
-    private MenusItems items=new MenusItems();
-    private ArrayList<String> employeeMenu= items.getMenu("Employee");
+    private Menu menu = new Menu();
+    private MenusItems items = new MenusItems();
+    private ArrayList<String> employeeMenu = items.getMenu("Employee");
     ServicesGeneration servicesGeneration;
     public EmployeeMenu(User user, ServicesGeneration servicesGeneration) {
-        this.servicesGeneration=servicesGeneration;
-        int userAnswer=0;
-        while (userAnswer!=employeeMenu.size()){
+        this.servicesGeneration = servicesGeneration;
+        int userAnswer = 0;
+        while (userAnswer != employeeMenu.size()){
             menu.printMenu(employeeMenu);
-            userAnswer=menu.getUserChoice(employeeMenu.size());
+            userAnswer = menu.getUserChoice(employeeMenu.size());
             manageMain(userAnswer);
         }
     }
@@ -46,7 +46,7 @@ public class EmployeeMenu {
                 // if id=-1 Optional sout err
                 // else po id poluchaem Task!!!!!
 
-                //usertaskservice zaprashivaem koment
+                //userTalkService zaprashivaem koment
 
                 //ResponseDTO response= CommentService.addComment(answer!!!!!)
                 //sout response

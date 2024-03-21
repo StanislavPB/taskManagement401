@@ -2,7 +2,7 @@ package org.taskmanagement401;
 
 import org.taskmanagement401.config.TestPreloader;
 import org.taskmanagement401.service.ServicesGeneration;
-import org.taskmanagement401.service.manus.MainMenu;
+import org.taskmanagement401.service.menus.MainMenu;
 
 public class TaskManagement401Application {
 

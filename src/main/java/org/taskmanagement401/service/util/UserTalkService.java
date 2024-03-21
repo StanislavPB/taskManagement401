@@ -3,6 +3,7 @@ package org.taskmanagement401.service.util;
 import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.Project;
+import org.taskmanagement401.entity.Task;
 
 import java.util.List;
 
@@ -42,4 +43,12 @@ public class UserTalkService {
      // public int getAnswer ukazali id projecra
      //
     }
+//    public static void printAllTasks(List<Task> tasks) {
+//
+//        for (int i = 0; i < tasks.size(); i++) {
+//            if (!tasks.get(i).isTaskCompleted()){
+//                System.out.println((i + 1) + ". " + tasks.get(i).getTaskName());
+//            }
+//        }
+//    }
 }
