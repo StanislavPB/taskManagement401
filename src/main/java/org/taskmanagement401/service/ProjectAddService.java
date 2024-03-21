@@ -12,7 +12,7 @@ import org.taskmanagement401.service.validation.ProjectValidation;
 import java.util.List;
 
 public class ProjectAddService {
-    ProjectValidation validation;
+    ProjectValidation validation=new ProjectValidation();
     ProjectRepository projectRepository;
 
     public ProjectAddService(ProjectRepository projectRepository) {

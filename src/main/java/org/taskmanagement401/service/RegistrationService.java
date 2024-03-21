@@ -22,8 +22,7 @@ public class RegistrationService {
         this.repository = repository;
     }
 
-    public ResponseDTO registration(){
-        UserDto dto=UserTalkService.getUserParameters(true);
+    public ResponseDTO registration(UserDto dto){
         List<ErrorDto> errors=validation.checkUser(dto);
         if(errors.isEmpty()){
             Optional<User> user=repository.addNewUser(dto);

@@ -20,18 +20,20 @@ public class AuthorizationService {
     public AuthorizationService(UserRepository repository) {
         this.repository = repository;
     }
-    public ResponseDTO verification(){
-        UserDto dto= UserTalkService.getUserParameters(false);
-        Optional<User>user =repository.getUserIdByLoginAndPassword(dto);
-        if(user.isEmpty()){
-            List<ErrorDto> errors =new ArrayList<>();
-            errors.add(new ErrorDto(ErrorCodes.WRONGLOGINDATA.getStatusCode(),
-                    ErrorCodes.WRONGLOGINDATA.getDescription()));
-            return new ResponseDTO<>(400,errors);
-        }else{
-            return new ResponseDTO<>(200,user.get());
+    public ResponseDTO verification(UserDto dto){
+        List<ErrorDto> errors=validation.checkUserAuthorization(dto);
+        if(errors.isEmpty()) {
+            Optional<User> user = repository.getUserIdByLoginAndPassword(dto);
+            if (user.isEmpty()) {
+                errors = new ArrayList<>();
+                errors.add(new ErrorDto(ErrorCodes.WRONGLOGINDATA.getStatusCode(),
+                        ErrorCodes.WRONGLOGINDATA.getDescription()));
+                return new ResponseDTO<>(400, errors);
+            } else {
+                return new ResponseDTO<>(200, user.get());
+            }
         }
-
+        return new ResponseDTO<>(400, errors);
     }
 
 }
