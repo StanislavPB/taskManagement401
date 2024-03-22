@@ -9,10 +9,10 @@ public class Task {
     private Integer taskID;
     private String taskName;
     private LocalDate endDate;
-    private List<User> assignedUsers;
+    private List<User> assignedUsers =new ArrayList<>();
     private Priority priority;
     private boolean taskCompleted;
-    private List<Comment> comments;
+    private List<Comment> comments=new ArrayList<>();
 
     public Task(Integer taskID, String taskName, LocalDate endDate, int statusPriority) {
         this.taskID = taskID;
@@ -52,6 +52,10 @@ public class Task {
 
    public void setTaskID(Integer taskID) {
         this.taskID = taskID;
+    }
+
+    public void setTaskCompleted(boolean taskCompleted) {
+        this.taskCompleted = taskCompleted;
     }
 
     public static Priority fromStatusPriority(int statusPriority) {
