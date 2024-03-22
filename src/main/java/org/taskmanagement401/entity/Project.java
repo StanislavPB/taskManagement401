@@ -94,5 +94,9 @@ public class Project implements Comparable<Project>{
     public int compareTo(Project o) {
         return o.getId()-id;
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
 
