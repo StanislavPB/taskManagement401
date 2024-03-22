@@ -4,6 +4,7 @@ import org.taskmanagement401.config.MenusItems;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.service.ServicesGeneration;
+import org.taskmanagement401.service.menuClasses.employeeMenu.ChatMenu;
 import org.taskmanagement401.service.menuClasses.employeeMenu.CommentMenu;
 import org.taskmanagement401.service.menuClasses.employeeMenu.GetTasksMenu;
 import org.taskmanagement401.service.menuClasses.employeeMenu.TaskStatusMenu;
@@ -33,17 +34,15 @@ public class EmployeeMenu {
                 menu.printError();
                 break;
             case 1:
-                GetTasksMenu getTasksMenu=new GetTasksMenu(
-                        user,servicesGeneration.getProjectRepository(),
-                        servicesGeneration.getTaskRepository());
-
-                break;
-            case 2:
                 CommentMenu commentMenu = new CommentMenu( user ,
                         servicesGeneration.getCommentRepository());
                  break;
-            case 3:
+            case 2:
                 TaskStatusMenu taskStatusMenu= new TaskStatusMenu(user);
+                break;
+            case 3:
+                ChatMenu chatMenu=new ChatMenu(user,servicesGeneration.getUserRepository(),
+                        servicesGeneration.getChatRepository());
                 break;
         }
     }

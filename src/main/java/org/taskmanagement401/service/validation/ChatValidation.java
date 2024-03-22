@@ -11,13 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatValidation {
-    public List<ErrorDto> checkComment(CommentDto commentDto){
+    public List<ErrorDto> checkSMS(ChatDTO chattDto){
         List<ErrorDto> errors=new ArrayList<>();
-        if(commentDto.getComment().length()<5){
-            errors.add(new ErrorDto(ErrorCodes.SHORTMESSAGE.getStatusCode(),
-                    ErrorCodes.SHORTMESSAGE.getDescription()));
-        }
-        if(commentDto.getComment().isBlank()) {
+        if(chattDto.getSms().isBlank()) {
             errors.add(new ErrorDto(ErrorCodes. BLANKDATA.getStatusCode(),
                     ErrorCodes. BLANKDATA.getDescription()));
         }

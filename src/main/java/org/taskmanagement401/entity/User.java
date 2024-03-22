@@ -11,6 +11,7 @@ public class User {
     private String password;
     private int status;
     private List<Task> task=new ArrayList<>();
+    private List<Message> sms=new ArrayList<>();
 
     public User(int id, String name, String login, String password, int status) {
         this.id = id;
@@ -42,5 +43,9 @@ public class User {
 
     public List<Task> getTask() {
         return task;
+    }
+
+    public List<Message> getSms() {
+        return sms;
     }
 }
