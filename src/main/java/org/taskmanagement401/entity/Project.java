@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Project {
+public class Project implements Comparable<Project>{
 
     private int id;
     private String name;
@@ -84,6 +84,11 @@ public class Project {
 
     public void setDiscription(String discription) {
         this.discription = discription;
+    }
+
+    @Override
+    public int compareTo(Project o) {
+        return o.getId()-id;
     }
 }
 

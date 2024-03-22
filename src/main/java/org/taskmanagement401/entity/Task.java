@@ -13,6 +13,7 @@ public class Task {
     private Priority priority;
     private boolean taskCompleted;
     private List<Comment> comments=new ArrayList<>();
+    private Project project;
 
     public Task(Integer taskID, String taskName, LocalDate endDate, int statusPriority) {
         this.taskID = taskID;
@@ -67,6 +68,14 @@ public class Task {
             return Priority.LOW;
         }
         return null;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     @Override

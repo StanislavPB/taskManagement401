@@ -3,6 +3,7 @@ package org.taskmanagement401.config;
 import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.dto.UserDto;
+import org.taskmanagement401.entity.Comment;
 import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.service.ServicesGeneration;
 
@@ -42,15 +43,23 @@ public class TestPreloader {
         mainServices.getTaskRepository().addTask(new TaskDto("Task2",LocalDate.of(2024,2,21),2));
         mainServices.getTaskRepository().addTask(new TaskDto("Task3",LocalDate.of(2024,1,21),3));
 
+
         mainServices.getProjectRepository().findById(1).get().getTasks().add(
                 mainServices.getTaskRepository().findById(1).get()
         );
+        mainServices.getTaskRepository().findById(1).get().setProject(
+                mainServices.getProjectRepository().findById(1).get());
+
         mainServices.getProjectRepository().findById(2).get().getTasks().add(
                 mainServices.getTaskRepository().findById(2).get()
         );
+        mainServices.getTaskRepository().findById(2).get().setProject(
+                mainServices.getProjectRepository().findById(2).get());
         mainServices.getProjectRepository().findById(3).get().getTasks().add(
                 mainServices.getTaskRepository().findById(3).get()
         );
+        mainServices.getTaskRepository().findById(3).get().setProject(
+                mainServices.getProjectRepository().findById(3).get());
 
         mainServices.getTaskRepository().findById(1).get().getAssignedUsers().add(
                 mainServices.getUserRepository().getUserById(1).get()
@@ -69,6 +78,11 @@ public class TestPreloader {
         );
         mainServices.getUserRepository().getUserById(3).get().getTask().add(
                 mainServices.getTaskRepository().findById(3).get()
+        );
+
+        mainServices.getUserRepository().getUserById(1).get().getTask().get(0).getComments().add(
+                new Comment(mainServices.getUserRepository().getUserById(1).get(),
+                        "Help me. I don`t understand")
         );
 
     }
