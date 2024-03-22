@@ -42,15 +42,17 @@ public class AddUserToTaskMenu {
                 if (userOptional.isEmpty()) {
                     System.out.println("Invalid user selection");
                 }else {
-                    ResponseDTO dtoResponse =
-                    AddUserToTaskService.assignUser(taskOptional.get(), userOptional.get());
-                    //как их дать в кач-ве параметра НО без оптионал??? taskOptional, userOptional
-                    System.out.println(dtoResponse);
+                    if ( userOptional.get().getStatus() == 1){
+                        System.out.println("Invalid user selection");
+                    }else {
+                        ResponseDTO dtoResponse =
+                                AddUserToTaskService.assignUser(taskOptional.get(), userOptional.get());
+                        //как их дать в кач-ве параметра НО без оптионал??? taskOptional, userOptional
+                        System.out.println(dtoResponse);
+                    }
                 }
 
             }
-
-
 
         }
     }

@@ -74,7 +74,7 @@ public class UserTalkService {
 
         }
 
- }
+
     public static void printAllTasks(List<Task> tasks){
         tasks.sort(Comparator.comparing(Task::getPriority).reversed());
         for(Task task : tasks){
@@ -89,7 +89,14 @@ public class UserTalkService {
 
     public static void printAllUsers(List<User> users){
         for(User user : users){
-            System.out.println(user.getId() + " " + user.getName() + " имеет список задач: " + user.getTask());
+            if ( user.getStatus() != 1 ) {
+            System.out.println(user.getId() + " " + user.getName());}
+            if (!user.getTask().isEmpty()){
+            System.out.println("                     user has tasks: " );
+            for (Task task : user.getTask()) {
+                System.out.println("                     " + task.getTaskName());
+            }
+            }
         }
     }
     public static void printAllTasksWithProjects(List<Task> tasks){
@@ -104,6 +111,6 @@ public class UserTalkService {
                 System.out.println("            Id - "+task.getTaskID()+":  "+task.getPriority()+"/"+ task.getTaskName() + "/" + task.getEndDate());
 
         }
-        }
+    }
 
 }
