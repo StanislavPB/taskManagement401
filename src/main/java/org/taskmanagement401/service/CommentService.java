@@ -28,20 +28,9 @@ public class CommentService {
                 validation.checkComment(commentDto);
 
         if (errors.isEmpty()) {
-            commentRepository.add(user, commentDto, task);
-            return new ResponseDTO<>(200, "status ok");
+            return new ResponseDTO<>(200, commentRepository.add(user, commentDto, task));
         } else {
             return new ResponseDTO<>(400, errors);
         }
-
-       // validaciya na length <10
-        //esli ok Comment repositoriyCommentary . method. addComment(comment)
-        //else List<Errors> List!!!!!!!!
-        //new ResponseDTO<>(400,List!!!!!!!!);
-
-
-        /*Comment newComment = commentCreate();
-        commentRepository.add(newComment);*/
-
-    }}
+ }}
 

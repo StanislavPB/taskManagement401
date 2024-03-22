@@ -43,9 +43,7 @@ public class EmployeeMenu {
                         servicesGeneration.getCommentRepository());
                  break;
             case 3:
-                TaskStatusMenu taskStatusMenu= new TaskStatusMenu(user,
-                        servicesGeneration.getProjectRepository(),
-                        servicesGeneration.getTaskRepository());
+                TaskStatusMenu taskStatusMenu= new TaskStatusMenu(user);
                 break;
         }
     }
