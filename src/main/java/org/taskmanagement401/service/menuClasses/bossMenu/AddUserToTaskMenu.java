@@ -1,5 +1,6 @@
 package org.taskmanagement401.service.menuClasses.bossMenu;
 
+import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.entity.User;
@@ -27,8 +28,8 @@ public class AddUserToTaskMenu {
 
             System.out.println("Select a task for adding user: ");
             //вывести все задачи проекта и запросить айди задачи у босса
-            Optional<Task> taskOptional = PrintSelectedProjectsTasks.print(taskRepository, optionalProject);
-                                                                                         //выбранный проект
+            Optional<Task> taskOptional = PrintSelectedProjectsTasks.print(taskRepository, optionalProject.get());
+
 
             if (taskOptional.isEmpty()) {
                 System.out.println("Invalid task selection");
@@ -41,14 +42,14 @@ public class AddUserToTaskMenu {
                 if (userOptional.isEmpty()) {
                     System.out.println("Invalid user selection");
                 }else {
-                    AddUserToTaskService.assignUser(выбраннаяЗадача, выбранныйЮзер);
+                    ResponseDTO dtoResponse =
+                    AddUserToTaskService.assignUser(taskOptional.get(), userOptional.get());
                     //как их дать в кач-ве параметра НО без оптионал??? taskOptional, userOptional
+                    System.out.println(dtoResponse);
                 }
+
             }
 
-
-
-            //ResponseDTO <String> response = addUserToTaskService.assignUser(targetedTask,selectedUser);
 
 
         }

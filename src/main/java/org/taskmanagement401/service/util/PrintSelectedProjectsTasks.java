@@ -9,7 +9,7 @@ import java.util.Optional;
 public class PrintSelectedProjectsTasks {
     public static Optional<Task> print(TaskRepository taskRepository, Project selectedProject){
         List<Task> tasks = selectedProject.getTasks();
-        UserTalkService.printSelectedProjectTask(tasks, selectedProject);
+        UserTalkService.printSelectedProjectTask(selectedProject);
 
         int taskChoice = UserInput.inputPositiveInt("Choose a task by ID to edit: ");
 
