@@ -11,7 +11,7 @@ import java.util.Optional;
 public class PrintUserTasks {
     public static Optional<Task> print(User user){
         List<Task> tasks = user.getTask();
-        UserTalkService.printAllTasks(tasks);
+        UserTalkService.printAllTasksWithProjects(tasks);
         int projectChoice = UserInput.inputPositiveInt("Choose a task by ID: ");
            return tasks.stream()
                     .filter(task -> task.getTaskID() == projectChoice)

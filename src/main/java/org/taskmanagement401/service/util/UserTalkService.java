@@ -57,9 +57,23 @@ public class UserTalkService{
         Collections.sort(tasks, Comparator.comparing(Task::getPriority).reversed());
         for(Task task : tasks){
             if(!task.isTaskCompleted()){
-                System.out.println(task.getPriority()+"/"+task.getTaskID()+"/"+ task.getTaskName() + "/" + task.getEndDate());
+                System.out.println("Id - "+task.getTaskID()+":  "+task.getPriority()+"/"+ task.getTaskName() + "/" + task.getEndDate());
             }
         }
+
     }
+    public static void printAllTasksWithProjects(List<Task> tasks){
+        Collections.sort(tasks, Comparator.comparing(Task::getProject).thenComparing(Task::getPriority));
+        String projectName="";
+        for(Task task : tasks){
+
+            if(!projectName.equals(task.getProject().getName())){
+                System.out.println("Project : "+task.getProject().getName());
+                projectName=task.getProject().getName();
+            }
+                System.out.println("            Id - "+task.getTaskID()+":  "+task.getPriority()+"/"+ task.getTaskName() + "/" + task.getEndDate());
+
+        }
+        }
 
 }
