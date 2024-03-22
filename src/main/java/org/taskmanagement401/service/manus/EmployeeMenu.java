@@ -39,32 +39,9 @@ public class EmployeeMenu {
 
                 break;
             case 2:
-                //CommentMenu commentMenu=new CommentMenu(user,)
-               // ProjectRepository repository=servicesGeneration.getProjectRepository();
-                // UserTalkService.printAllProjects(repository.findAll());
-                 //id project!!!!!! getanwer
-                 // if id=-1 Optional sout err
-                // else po id poluchaem Project!!!!!
-
-                CommentMenu commentMenu = new CommentMenu( user ,servicesGeneration.getProjectRepository(),
-                        servicesGeneration.getTaskRepository(),servicesGeneration.getCommentRepository(),
-                        servicesGeneration.getUserRepository());
-
-                // TaskRepository repository=servicesGeneration.getTASKRepository(project!!!!!!);
-                //    UserTalkService.printAllProjects(repository.findAll());
-                //id task!!!!!! getanwer   - peremennaya     answer!!!!!
-                // if id=-1 Optional sout err
-                // else po id poluchaem Task!!!!!
-
-                //usertaskservice zaprashivaem koment
-
-                //ResponseDTO response= CommentService.addComment(answer!!!!!)
-                //sout response
-
-
-
-                //UserTaskService.
-                break;
+                CommentMenu commentMenu = new CommentMenu( user ,
+                        servicesGeneration.getCommentRepository());
+                 break;
             case 3:
                 TaskStatusMenu taskStatusMenu= new TaskStatusMenu(user,
                         servicesGeneration.getProjectRepository(),
