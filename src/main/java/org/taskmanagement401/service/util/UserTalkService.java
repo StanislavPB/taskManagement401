@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 public class UserTalkService {
     public static UserDto getUserParameters(boolean getWithUserName){
@@ -63,11 +62,16 @@ public class UserTalkService {
      //
     }
 
-    public static void printSelectedProjectTask(List<Task> tasks, Project selectedProject) {
+    public static void printSelectedProjectTask(Project selectedProject) {
+        List<Task> tasks = selectedProject.getTasks();
         for (Task task : tasks) {
             if (!task.isTaskCompleted()) {
                 System.out.println(task.getTaskID() + " " + task.getTaskName());
+
                }
+
+            }
+
         }
 
  }
