@@ -25,7 +25,7 @@ public class RegistrationService {
     public ResponseDTO registration(UserDto dto){
         List<ErrorDto> errors=validation.checkUser(dto);
         if(errors.isEmpty()){
-            Optional<User> user=repository.addNewUser(dto);
+            Optional<User> user=repository.addNewUser(dto,false);
             if(user.isEmpty()){
                 errors.add(new ErrorDto(ErrorCodes.WRONGNEWLOGIN.getStatusCode(),
                         ErrorCodes.WRONGNEWLOGIN.getDescription()));

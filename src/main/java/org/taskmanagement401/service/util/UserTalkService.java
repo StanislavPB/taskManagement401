@@ -75,16 +75,16 @@ public class UserTalkService {
         }
 
 
-    public static void printAllTasks(List<Task> tasks){
+    public static void printAllTasks(List<Task> tasks) {
         tasks.sort(Comparator.comparing(Task::getPriority).reversed());
-        for(Task task : tasks){
-            if(!task.isTaskCompleted()){
-                System.out.println(task.getTaskID()+" "+ task.getTaskName() + " "+ task.getPriority()+" "+ task.getEndDate());
-                System.out.println("Id - "+task.getTaskID()+":  "+task.getPriority()+"/"+ task.getTaskName() + "/" + task.getEndDate());
+        for (Task task : tasks) {
+            if (!task.isTaskCompleted()) {
+                System.out.println(task.getTaskID() + " " + task.getTaskName() + " " + task.getPriority() + " " + task.getEndDate());
+                System.out.println("Id - " + task.getTaskID() + ":  " + task.getPriority() + "/" + task.getTaskName() + "/" + task.getEndDate());
 
             }
         }
- }
+    }
 
 
     public static void printAllUsers(List<User> users){
@@ -98,6 +98,13 @@ public class UserTalkService {
             }
             }
         }
+    }
+    public static void printAllUsersForChat(List<User> users,int userID){
+        for(User user : users){
+                if(user.getId()!=userID) {
+                    System.out.println(user.getId() + " " + user.getName());
+                }
+            }
     }
     public static void printAllTasksWithProjects(List<Task> tasks){
         Collections.sort(tasks, Comparator.comparing(Task::getProject).thenComparing(Task::getPriority));

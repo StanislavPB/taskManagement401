@@ -11,6 +11,7 @@ import org.taskmanagement401.service.ProjectAddService;
 import org.taskmanagement401.service.ProjectEditService;
 import org.taskmanagement401.service.ServicesGeneration;
 import org.taskmanagement401.service.menuClasses.bossMenu.*;
+import org.taskmanagement401.service.menuClasses.employeeMenu.ChatMenu;
 import org.taskmanagement401.service.util.UserInput;
 import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.ProjectValidation;
@@ -23,7 +24,9 @@ public class BossMenu {
     private MenusItems items=new MenusItems();
     ServicesGeneration servicesGeneration;
     ArrayList<String> bossMenu= items.getMenu("Chef");
+    User user;
     public BossMenu(User user, ServicesGeneration servicesGeneration) {
+       this.user=user;
         this.servicesGeneration=servicesGeneration;
         int userAnswer=0;
         while (userAnswer!=bossMenu.size()){
@@ -54,24 +57,23 @@ public class BossMenu {
                         servicesGeneration.getTaskRepository()
                 );
                 break;
+
             case 4:
-                AddUserToProjectMenu addUserToProjectMenu= new AddUserToProjectMenu(
-                        servicesGeneration.getProjectRepository(),
-                        servicesGeneration.getUserRepository()
-                );
-                break;
-            case 5:
                 AddUserToTaskMenu addUserToTaskMenu=new AddUserToTaskMenu(
                   servicesGeneration.getProjectRepository(),
                         servicesGeneration.getUserRepository(),
                         servicesGeneration.getTaskRepository()
                 );
                 break;
-            case 6:
+            case 5:
                 CheckProjectMenu checkProjectMenu=new CheckProjectMenu(
                         servicesGeneration.getProjectRepository()
                 );
                 break;
+            case 6:
+            ChatMenu chatMenu=new ChatMenu(user,servicesGeneration.getUserRepository(),
+                    servicesGeneration.getChatRepository());
+            break;
         }
     }
 }

@@ -20,14 +20,14 @@ public class MenusItems {
                 "Editing project",
                 "Add task",
                 "Add user",
-                "Add user to task",
+
                 "Check progress of projects",
                 "Chat",
                 "Exit"));
         menus.put("Chef",menu);
 
         menu=new ArrayList<>(Arrays.
-        asList( "Get tasks",
+        asList(
                 "Comment task",
                 "Change task status",
                 "Chat",
