@@ -42,6 +42,19 @@ public class CheckProjectMenu {
 
         if (selectedProjectOpt.isPresent()) {
             Project selectedProject = selectedProjectOpt.get();
+
+            boolean hasIncompleteTasks = selectedProject.getTasks().stream()
+                    .anyMatch(task -> !task.isTaskCompleted());
+
+            if (hasIncompleteTasks) {
+                System.out.println("This project has incomplete tasks. Are you sure you want to mark it as completed? (y/n)");
+                boolean confirm = UserInput.inputBool("");
+                if (!confirm) {
+                    System.out.println("The project status has not been changed.");
+                    return;
+                }
+            }
+
             selectedProject.setStatus(true);
             System.out.println("Project '" + selectedProject.getName() + "' has been marked as completed.");
         } else {
