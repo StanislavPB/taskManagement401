@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Project {
+public class Project implements Comparable<Project>{
 
     private int id;
     private String name;
     private String discription;
-    private List<User> users;
-    private List<Task> tasks;
+
+    private List<User> users = new ArrayList<>();;
+    private List<Task> tasks = new ArrayList<>();;
+
     private boolean status;
 
     /*на коллекции не добавляла пока Getter&Setter, а сами поля закомментировала, потому что ошибку выдает -
@@ -86,6 +88,11 @@ public class Project {
 
     public void setDiscription(String discription) {
         this.discription = discription;
+    }
+
+    @Override
+    public int compareTo(Project o) {
+        return o.getId()-id;
     }
 }
 

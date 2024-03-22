@@ -9,21 +9,18 @@ public class Task {
     private Integer taskID;
     private String taskName;
     private LocalDate endDate;
-    private List<User> assignedUsers;
+    private List<User> assignedUsers =new ArrayList<>();
     private Priority priority;
     private boolean taskCompleted;
-    private List<Comment> comments;
+    private List<Comment> comments=new ArrayList<>();
+    private Project project;
 
     public Task(Integer taskID, String taskName, LocalDate endDate, int statusPriority) {
         this.taskID = taskID;
         this.taskName = taskName;
         this.priority = fromStatusPriority(statusPriority);
         this.endDate = endDate;
-        this.assignedUsers = new ArrayList<>();
-        this.taskCompleted = false;
-        this.comments = new ArrayList<>();
     }
-
 
     public Integer getTaskID() {
         return taskID;
@@ -54,35 +51,31 @@ public class Task {
         return comments;
     }
 
-    public void setTaskID(Integer taskID) {
+   public void setTaskID(Integer taskID) {
         this.taskID = taskID;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setAssignedUsers(List<User> assignedUsers) {
-        this.assignedUsers = assignedUsers;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
+    public void setTaskCompleted(boolean taskCompleted) {
+        this.taskCompleted = taskCompleted;
     }
 
     public static Priority fromStatusPriority(int statusPriority) {
-        if (statusPriority == 3) {
+        if (statusPriority == 1) {
             return Priority.HIGH;
         } else if (statusPriority == 2) {
             return Priority.MEDIUM;
-        } else if (statusPriority == 1) {
+        } else if (statusPriority == 3) {
             return Priority.LOW;
         }
         return null;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     @Override

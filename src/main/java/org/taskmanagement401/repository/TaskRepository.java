@@ -2,6 +2,7 @@ package org.taskmanagement401.repository;
 
 import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.entity.Task;
+import org.taskmanagement401.entity.User;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -45,6 +46,14 @@ public class TaskRepository {
             }
         }
         return Optional.empty();
+    }
+    public Optional<Task> getTaskById(int id){
+        Task task = tasks.get(id);
+        if(task != null){
+            return Optional.of(task);
+        }else{
+            return Optional.empty();
+        }
     }
 
 

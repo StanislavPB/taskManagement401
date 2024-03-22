@@ -24,9 +24,9 @@ public class CommentRepository
   private Comment create ( CommentDto commentDto,User user){
         return new Comment(user,commentDto.getComment());
   }
-    public void add(User user, CommentDto commentDto, Task task) {
+    public Comment add(User user, CommentDto commentDto, Task task) {
 
-      create(commentDto,user);
+      return create(commentDto,user);
 
     }
 
