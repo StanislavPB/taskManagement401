@@ -1,15 +1,13 @@
 package org.taskmanagement401.service;
 
-import org.taskmanagement401.repository.CommentRepository;
-import org.taskmanagement401.repository.ProjectRepository;
-import org.taskmanagement401.repository.TaskRepository;
-import org.taskmanagement401.repository.UserRepository;
+import org.taskmanagement401.repository.*;
 
 public class  ServicesGeneration {
     private final UserRepository userRepository=new UserRepository();
     private final ProjectRepository projectRepository=new ProjectRepository();
     private final CommentRepository commentRepository=new CommentRepository();
     private final TaskRepository taskRepository = new TaskRepository();
+    private final ChatRepository chatRepository=new ChatRepository();
     public UserRepository getUserRepository() {
         return userRepository;
     }
@@ -26,5 +24,7 @@ public class  ServicesGeneration {
         return commentRepository;
     }
 
-
+    public ChatRepository getChatRepository() {
+        return chatRepository;
+    }
 }
