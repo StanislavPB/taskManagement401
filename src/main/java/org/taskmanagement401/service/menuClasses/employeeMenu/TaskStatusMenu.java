@@ -1,11 +1,26 @@
 package org.taskmanagement401.service.menuClasses.employeeMenu;
 
+import org.taskmanagement401.dto.ResponseDTO;
+import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.repository.TaskRepository;
+import org.taskmanagement401.service.util.PrintUserTasks;
+
+import java.util.Optional;
 
 public class TaskStatusMenu {
-    public TaskStatusMenu(User user, ProjectRepository projectRepository,
-                          TaskRepository taskRepository) {
+    public TaskStatusMenu(User user) {
+        if(user.getTask().isEmpty()){
+            System.out.println("You don`t have active tasks");
+        }else {
+            Optional<Task> taskOptional = PrintUserTasks.print(user);
+            if (taskOptional.isEmpty()) {
+                System.out.println("Wrong input data");
+            } else {
+                taskOptional.get().setTaskCompleted(true);
+                System.out.println(new ResponseDTO(200,"Status ok"));
+            }
+        }
     }
 }
