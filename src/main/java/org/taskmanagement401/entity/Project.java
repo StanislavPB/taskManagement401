@@ -25,6 +25,8 @@ public class Project implements Comparable<Project>{
         this.id = id;
         this.name = name;
         this.discription = discription;
+        this.users = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public int getId() {

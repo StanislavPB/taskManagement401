@@ -1,5 +1,7 @@
 package org.taskmanagement401.service.util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class UserInput {
@@ -50,5 +52,13 @@ public class UserInput {
         System.out.println(text);
         int inputInteger = scanner.nextInt();
         return inputInteger;
+    }
+    public static LocalDate inputDate(String dateString) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(dateString);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String sTime = scanner.nextLine();
+        return LocalDate.parse(sTime, dateFormatter);
     }
 }
