@@ -4,13 +4,12 @@ import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.Task;
+import org.taskmanagement401.entity.User;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
-public class UserTalkService{
+public class UserTalkService {
     public static UserDto getUserParameters(boolean getWithUserName){
         String name="";
         if(getWithUserName){
@@ -37,12 +36,6 @@ public class UserTalkService{
         String description=UserInput.inputText("Enter description");
         return new ProjectDto(name,description);
     }
-    public static void taskInformation(){
-        System.out.println("The task name should be from 3 to 20 letters.");
-        System.out.println("Enter your date in (dd.mm.yy) format");
-        System.out.println("Enter priority(Use 3 for High priority, 2 - Medium, 1 - Low)");
-        System.out.println();
-    }
     public static void printAllProjects(List<Project> projects){
         for(Project project:projects){
             if(!project.isStatus()){
@@ -53,14 +46,29 @@ public class UserTalkService{
      //
     }
 
+    public static void printSelectedProjectTask(List<Task> tasks, Project selectedProject) {
+        for (Task task : tasks) {
+            if (!task.isTaskCompleted()) {
+                System.out.println(task.getTaskID() + " " + task.getTaskName());
+               } 
+        }
+
+ }
     public static void printAllTasks(List<Task> tasks){
         Collections.sort(tasks, Comparator.comparing(Task::getPriority).reversed());
         for(Task task : tasks){
             if(!task.isTaskCompleted()){
                 System.out.println("Id - "+task.getTaskID()+":  "+task.getPriority()+"/"+ task.getTaskName() + "/" + task.getEndDate());
+
             }
         }
+ }
+   
 
+    public static void printAllUsers(List<User> users){
+        for(User user : users){
+            System.out.println(user.getId() + " " + user.getName() + " имеет список задач: " + user.getTask());
+        }
     }
     public static void printAllTasksWithProjects(List<Task> tasks){
         Collections.sort(tasks, Comparator.comparing(Task::getProject).thenComparing(Task::getPriority));
