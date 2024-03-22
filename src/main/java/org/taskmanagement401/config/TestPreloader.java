@@ -61,8 +61,15 @@ public class TestPreloader {
         mainServices.getTaskRepository().findById(2).get().getAssignedUsers().add(
                 mainServices.getUserRepository().getUserById(2).get()
         );
-
-
+        mainServices.getUserRepository().getUserById(1).get().getTask().add(
+                mainServices.getTaskRepository().findById(1).get()
+        );
+        mainServices.getUserRepository().getUserById(2).get().getTask().add(
+                mainServices.getTaskRepository().findById(2).get()
+        );
+        mainServices.getUserRepository().getUserById(3).get().getTask().add(
+                mainServices.getTaskRepository().findById(3).get()
+        );
 
     }
 }
