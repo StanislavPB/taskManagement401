@@ -12,12 +12,9 @@ public class PrintUserTasks {
     public static Optional<Task> print(User user){
         List<Task> tasks = user.getTask();
         UserTalkService.printAllTasks(tasks);
-
-        int projectChoice = UserInput.inputPositiveInt("Choose a project by ID to edit: ");
-
-
-        return  tasks.stream()
-                .filter(task -> task.getTaskID() == projectChoice)
-                .findFirst();
+        int projectChoice = UserInput.inputPositiveInt("Choose a task by ID: ");
+           return tasks.stream()
+                    .filter(task -> task.getTaskID() == projectChoice)
+                    .findFirst();
     }
 }
