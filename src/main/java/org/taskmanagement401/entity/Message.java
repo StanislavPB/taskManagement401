@@ -1,6 +1,4 @@
-package org.taskmanagement401.message;
-
-import org.taskmanagement401.entity.User;
+package org.taskmanagement401.entity;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
