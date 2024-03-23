@@ -48,4 +48,11 @@ public class User {
     public List<Message> getSms() {
         return sms;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

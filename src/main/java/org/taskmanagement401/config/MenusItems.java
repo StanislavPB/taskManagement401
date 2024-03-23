@@ -19,8 +19,8 @@ public class MenusItems {
         asList( "Add project",
                 "Editing project",
                 "Add task",
-                "Add user",
-
+                "Add user to project",
+                "Add user to task",
                 "Check progress of projects",
                 "Chat",
                 "Exit"));

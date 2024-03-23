@@ -92,7 +92,7 @@ public class UserTalkService {
             if ( user.getStatus() != 1 ) {
             System.out.println(user.getId() + " " + user.getName());}
             if (!user.getTask().isEmpty()){
-            System.out.println("                     user has tasks: " );
+            System.out.println("                     user has tasks in other project: " );
             for (Task task : user.getTask()) {
                 System.out.println("                     " + task.getTaskName());
             }
