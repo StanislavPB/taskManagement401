@@ -8,10 +8,12 @@ import org.taskmanagement401.entity.Message;
 import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.repository.ChatRepository;
 import org.taskmanagement401.service.ServicesGeneration;
+import org.taskmanagement401.service.dataService.LoadSMS_Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 public class TestPreloader {
     public TestPreloader(ServicesGeneration mainServices) {
@@ -94,31 +96,12 @@ public class TestPreloader {
 
 
         mainServices.getUserRepository().getUserById(1).get().getTask().get(0).getComments().add(
-                new Comment(mainServices.getUserRepository().getUserById(1).get(),
+                new Comment(1,mainServices.getUserRepository().getUserById(1).get(),
                         "Help me. I don`t understand")
         );
-        Message sms=new Message(1,9,2,"Hello", LocalDateTime.now());
-        mainServices.getUserRepository().getUserById(9).get().getSms().add(
-                sms
-        );
-        ChatRepository chatRepository= mainServices.getChatRepository();
-        chatRepository.getSms().add(sms);
-        for(int i=1;i<100000000;i++){
-            //loop for different time sms adding
-        }
-        sms=new Message(1,2,9,"Hello Boss", LocalDateTime.now());
-        mainServices.getUserRepository().getUserById(2).get().getSms().add(
-               sms
-        );
-        chatRepository.getSms().add(sms);
-         for(int i=1;i<100000000;i++){
-            //loop for different time sms adding
-        }
-        sms=new Message(1,9,2,"You get holiday with salary for hole year.", LocalDateTime.now());
-        mainServices.getUserRepository().getUserById(9).get().getSms().add(
-               sms
-        );
-        chatRepository.getSms().add(sms);
+        LoadSMS_Service load=new LoadSMS_Service();
+        Optional<Exception> result= load.load(mainServices.getUserRepository(), mainServices.getChatRepository());
+        result.ifPresent(System.out::println);
 
     }
 }

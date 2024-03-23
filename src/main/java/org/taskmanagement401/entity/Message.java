@@ -34,12 +34,11 @@ public class Message {
         return sendTime;
     }
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "sender=" + sender +
-                ", contents='" + contents + '\'' +
-                '}';
+    public int getId() {
+        return id;
     }
+
+
 }
+
 
