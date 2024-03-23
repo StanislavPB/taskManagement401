@@ -15,14 +15,14 @@ public class CommentRepository
 {
 
     private List<Comment> commentList;
-    private int id = 1;
+    private int id = 0;
 
     public CommentRepository() {
         this.commentList = new ArrayList<>();
     }
 
   private Comment create ( CommentDto commentDto,User user){
-        return new Comment(user,commentDto.getComment());
+        return new Comment(++id,user,commentDto.getComment());
   }
     public Comment add(User user, CommentDto commentDto, Task task) {
 

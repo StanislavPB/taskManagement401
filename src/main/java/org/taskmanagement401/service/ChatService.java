@@ -7,12 +7,10 @@ import org.taskmanagement401.entity.Message;
 import org.taskmanagement401.entity.User;
 
 import org.taskmanagement401.repository.ChatRepository;
+import org.taskmanagement401.service.dataService.SaveSMS_Service;
 import org.taskmanagement401.service.validation.ChatValidation;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class ChatService {
 
@@ -38,7 +36,10 @@ public class ChatService {
                     validation.checkSMS(commentDto);
 
             if (errors.isEmpty()) {
-                chatRepository.addSMS(commentDto.getSms(), sender, receiver);
+                Message sms =chatRepository.addSMS(commentDto.getSms(), sender, receiver);
+                SaveSMS_Service save=new SaveSMS_Service();
+                Optional<Exception> result=save.saveSMS(sms);
+                result.ifPresent(System.out::println);
                 return new ResponseDTO<>(200, "Status ok");
             } else {
                 return new ResponseDTO<>(400, errors);

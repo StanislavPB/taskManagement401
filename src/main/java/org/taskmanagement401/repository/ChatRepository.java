@@ -11,10 +11,11 @@ public class ChatRepository {
 
         private List<Message> sms=new ArrayList<>();
         private int id=0;
-        public void addSMS(String content, User sender, int receiver){
+        public Message addSMS(String content, User sender, int receiver){
             Message newSMS=createSMS(content, sender, receiver);
             sms.add(newSMS);
             sender.getSms().add(newSMS);
+            return newSMS;
         }
         private Message createSMS(String content, User sender, int receiver){
             return new Message(++id,sender.getId(),receiver,content, LocalDateTime.now());
@@ -27,6 +28,10 @@ public class ChatRepository {
         public void setSms(List<Message> sms) {
             this.sms = sms;
         }
+
+    public void setId(int id) {
+        this.id = id;
     }
+}
 
 

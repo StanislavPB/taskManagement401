@@ -5,7 +5,8 @@ public class Comment {
     private User user;
     private String message;
 
-    public Comment(User user, String message) {
+    public Comment(int id,User user, String message) {
+        this.id=id;
         this.user = user;
         this.message = message;
     }
