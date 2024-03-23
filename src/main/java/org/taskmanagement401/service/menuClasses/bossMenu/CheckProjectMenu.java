@@ -3,17 +3,22 @@ package org.taskmanagement401.service.menuClasses.bossMenu;
 import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.repository.ProjectRepository;
+import org.taskmanagement401.service.ProjectStatusChangeService;
+import org.taskmanagement401.service.ProjectStatusCheckService;
 import org.taskmanagement401.service.util.UserInput;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public class CheckProjectMenu {
     private final ProjectRepository projectRepository;
+    private final ProjectStatusCheckService checkService;
+    private final ProjectStatusChangeService changeService;
 
     public CheckProjectMenu(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
+        this.checkService = new ProjectStatusCheckService(projectRepository);
+        this.changeService = new ProjectStatusChangeService(projectRepository);
         checkAndChangeProjectStatus();
     }
 
@@ -48,15 +53,8 @@ public class CheckProjectMenu {
         }
         System.out.println();
         int projectId = UserInput.inputPositiveInt("Enter the ID of the project you want to mark as completed: ");
-        Optional<Project> selectedProjectOpt = projectRepository.findById(projectId);
 
-        if (selectedProjectOpt.isPresent()) {
-            Project selectedProject = selectedProjectOpt.get();
-
-            boolean hasIncompleteTasks = selectedProject.getTasks().stream()
-                    .anyMatch(task -> !task.isTaskCompleted());
-
-            if (hasIncompleteTasks) {
+            if (checkService.hasIncompleteTasks(projectId)) {
                 System.out.println("This project has incomplete tasks. Are you sure you want to mark it as completed? (y/n)");
                 boolean confirm = UserInput.inputBool("");
                 if (!confirm) {
@@ -65,10 +63,12 @@ public class CheckProjectMenu {
                 }
             }
 
-            selectedProject.setStatus(true);
-            System.out.println("Project '" + selectedProject.getName() + "' has been marked as completed.");
-        } else {
-            System.out.println("Project with ID " + projectId + " not found.");
-        }
+            boolean isMarkedAsCompleted = changeService.markProjectAsCompleted(projectId);
+            if (isMarkedAsCompleted) {
+                System.out.println("Project has been marked as completed.");
+            } else {
+                System.out.println("Project with ID " + projectId + " not found.");
+            }
+
     }
 }
