@@ -28,14 +28,10 @@ public class ProjectAddService {
             if(projectRepository.addProject(dto)){
                 return new ResponseDTO<>(200,"status ok");
             }else{
-                errors.add(new ErrorDto(ErrorCodes.WRONGNEWLOGIN.getStatusCode(),
-                        ErrorCodes.WRONGNEWLOGIN.getDescription()));
                 return new ResponseDTO<>(400,errors);
             }
         }else {
             return new ResponseDTO<>(400, errors);
         }
     }
-
-
 }
