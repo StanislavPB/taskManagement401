@@ -26,7 +26,7 @@ public class AddUserToProjectMenu {
             Optional<User> user=
                     PrintUsersInProject.print(optionalProject.get(),userRepository);
             if(user.isEmpty()){
-                System.out.println("All users are in this project");
+                System.out.println("All users are already in this project");
             }    else{
                       ResponseDTO dtoResponse =
                                 AddUserToProjectService.assignUser(optionalProject.get(),user.get());
