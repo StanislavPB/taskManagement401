@@ -40,7 +40,8 @@ public class LoadSMS_Service {
     private Message getMessage(String[] elements) {
         LocalDateTime date= LocalDateTime.of(Integer.parseInt(elements[4]),
                 Integer.parseInt(elements[5]),Integer.parseInt(elements[6]),
-                Integer.parseInt(elements[7]),Integer.parseInt(elements[8])
+                Integer.parseInt(elements[7]),Integer.parseInt(elements[8]),
+                Integer.parseInt(elements[9])
          );
         Message sms=new Message(Integer.parseInt(elements[0]),
                 Integer.parseInt(elements[1]),

@@ -16,7 +16,8 @@ public class SaveSMS_Service {
             String strToAppend=message.getId()+","+message.getSender()+","+ message.getReceiver()+","+
                     message.getContents()+","+message.getSendTime().getYear()+","
                     +message.getSendTime().getMonthValue()+","+message.getSendTime().getDayOfMonth()+","+
-                    message.getSendTime().getHour()+","+message.getSendTime().getMinute();
+                    message.getSendTime().getHour()+","+message.getSendTime().getMinute()+","
+                    +message.getSendTime().getSecond();
             writer.append("\n");
             writer.append(strToAppend);
             writer.close();
