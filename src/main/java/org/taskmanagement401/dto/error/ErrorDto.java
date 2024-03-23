@@ -16,4 +16,8 @@ public class ErrorDto {
                 ", Description='" + Description + '\'' +
                 '}';
     }
+
+    public int getCode() {
+        return code;
+    }
 }
