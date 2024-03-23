@@ -6,10 +6,7 @@ import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.ProjectRepository;
-import org.taskmanagement401.service.AuthorizationService;
-import org.taskmanagement401.service.ProjectAddService;
-import org.taskmanagement401.service.ProjectEditService;
-import org.taskmanagement401.service.ServicesGeneration;
+import org.taskmanagement401.service.*;
 import org.taskmanagement401.service.menuClasses.bossMenu.*;
 import org.taskmanagement401.service.menuClasses.employeeMenu.ChatMenu;
 import org.taskmanagement401.service.util.UserInput;
@@ -51,26 +48,26 @@ public class BossMenu {
                         servicesGeneration.getProjectRepository()
                 );
                 break;
-            case 3:
-                AddTaskMenu addTaskMenu=new AddTaskMenu(
+            case 4:
+                AddUserToProjectMenu addUserToProjectMenu=new AddUserToProjectMenu(
                         servicesGeneration.getProjectRepository(),
-                        servicesGeneration.getTaskRepository()
+                        servicesGeneration.getUserRepository()
                 );
                 break;
 
-            case 4:
+            case 5:
                 AddUserToTaskMenu addUserToTaskMenu=new AddUserToTaskMenu(
                   servicesGeneration.getProjectRepository(),
                         servicesGeneration.getUserRepository(),
                         servicesGeneration.getTaskRepository()
                 );
                 break;
-            case 5:
+            case 6:
                 CheckProjectMenu checkProjectMenu=new CheckProjectMenu(
                         servicesGeneration.getProjectRepository()
                 );
                 break;
-            case 6:
+            case 7:
             ChatMenu chatMenu=new ChatMenu(user,servicesGeneration.getUserRepository(),
                     servicesGeneration.getChatRepository());
             break;

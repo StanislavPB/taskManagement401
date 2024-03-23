@@ -43,10 +43,18 @@ public class TestPreloader {
                 "This is project 3"));
 
         mainServices.getTaskRepository().addTask(new TaskDto("Task1",LocalDate.of(2024,3,21),1));
-        mainServices.getTaskRepository().addTask(new TaskDto("Task2",LocalDate.of(2024,2,21),2));
-        mainServices.getTaskRepository().addTask(new TaskDto("Task3",LocalDate.of(2024,1,21),3));
+        mainServices.getTaskRepository().addTask(new TaskDto("Task2",LocalDate.of(2024,4,21),2));
+        mainServices.getTaskRepository().addTask(new TaskDto("Task3",LocalDate.of(2024,4,3),3));
 
-
+        mainServices.getProjectRepository().findAllActiveProjects().get(0).getUsers().add(
+                mainServices.getUserRepository().getUserById(1).get()
+        );
+        mainServices.getProjectRepository().findAllActiveProjects().get(1).getUsers().add(
+                mainServices.getUserRepository().getUserById(2).get()
+        );
+        mainServices.getProjectRepository().findAllActiveProjects().get(2).getUsers().add(
+                mainServices.getUserRepository().getUserById(3).get()
+        );
         mainServices.getProjectRepository().findById(1).get().getTasks().add(
                 mainServices.getTaskRepository().findById(1).get()
         );
@@ -82,6 +90,8 @@ public class TestPreloader {
         mainServices.getUserRepository().getUserById(3).get().getTask().add(
                 mainServices.getTaskRepository().findById(3).get()
         );
+
+
 
         mainServices.getUserRepository().getUserById(1).get().getTask().get(0).getComments().add(
                 new Comment(mainServices.getUserRepository().getUserById(1).get(),

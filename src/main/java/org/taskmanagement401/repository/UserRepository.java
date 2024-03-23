@@ -70,6 +70,12 @@ public class UserRepository {
         }
         return new ArrayList<>(users.values());
     }
+    public List<User> getUsersWithoutBoss() {
+        if(users.isEmpty()){
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(users.values().stream().filter(x->x.getStatus()!=1).toList());
+    }
     public Optional<User> getUserById(int id){
         User user=users.get(id);
         if(user != null){

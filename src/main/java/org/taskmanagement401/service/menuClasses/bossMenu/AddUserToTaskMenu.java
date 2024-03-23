@@ -37,19 +37,15 @@ public class AddUserToTaskMenu {
 
                 System.out.println("Select a user for adding to selected task: ");
                 //вывести всех-всех юзеров, запросить номер по айди для добавления его к задаче
-                Optional<User> userOptional = PrintUsers.print(userRepository);
+                Optional<User> userOptional = PrintUsers.print(optionalProject.get(),taskOptional.get());
 
                 if (userOptional.isEmpty()) {
-                    System.out.println("Invalid user selection");
+                    System.out.println("All of project users are in task");
                 }else {
-                    if ( userOptional.get().getStatus() == 1){
-                        System.out.println("Invalid user selection");
-                    }else {
                         ResponseDTO dtoResponse =
                                 AddUserToTaskService.assignUser(taskOptional.get(), userOptional.get());
-                        //как их дать в кач-ве параметра НО без оптионал??? taskOptional, userOptional
                         System.out.println(dtoResponse);
-                    }
+
                 }
 
             }
