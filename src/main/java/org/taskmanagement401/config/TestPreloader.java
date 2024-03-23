@@ -42,7 +42,7 @@ public class TestPreloader {
         mainServices.getProjectRepository().addProject(new ProjectDto("Project3",
                 "This is project 3"));
 
-        mainServices.getTaskRepository().addTask(new TaskDto("Task1",LocalDate.of(2024,3,21),1));
+        mainServices.getTaskRepository().addTask(new TaskDto("Task1",LocalDate.of(2024,2,21),1));
         mainServices.getTaskRepository().addTask(new TaskDto("Task2",LocalDate.of(2024,4,21),2));
         mainServices.getTaskRepository().addTask(new TaskDto("Task3",LocalDate.of(2024,4,3),3));
 
