@@ -34,6 +34,4 @@ public class ProjectAddService {
             return new ResponseDTO<>(400, errors);
         }
     }
-
-
 }
