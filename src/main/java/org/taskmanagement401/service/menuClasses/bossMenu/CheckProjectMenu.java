@@ -5,6 +5,7 @@ import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.service.util.UserInput;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,16 @@ public class CheckProjectMenu {
             if (project.getTasks() != null && !project.getTasks().isEmpty()) {
                 System.out.println("\tTasks:");
                 for (Task task : project.getTasks()) {
-                    System.out.println("\t\tTask ID: " + task.getTaskID() + ", Name: " + task.getTaskName() + ", Completed: " + task.isTaskCompleted());
+                    String taskInfo = String.format("\t\tTask ID: %d, Name: %s, End Date: %s, Completed: %s",
+                            task.getTaskID(), task.getTaskName(), task.getEndDate(), task.isTaskCompleted());
+
+                    if (task.getEndDate().isBefore(LocalDate.now())) {
+                        // Просроченные задачи красным цветом
+                        System.out.println("\u001B[31m" + taskInfo + "\u001B[0m");
+                    } else {
+                        // Непросроченные задачи зеленым цветом
+                        System.out.println("\u001B[32m" + taskInfo + "\u001B[0m");
+                    }
                 }
             } else {
                 System.out.println("\tNo tasks for this project.");
