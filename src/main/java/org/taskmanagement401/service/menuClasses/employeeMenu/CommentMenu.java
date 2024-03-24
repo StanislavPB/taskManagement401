@@ -26,8 +26,7 @@ public class CommentMenu {
                 CommentService commentService = new CommentService(commentRepository);
                 ResponseDTO responseDTO = commentService.addNewComment(user, commentDto, taskOptional.get());
                 if(responseDTO.getCode()==200){
-                   taskOptional.get().getComments().add((Comment) responseDTO.getAnswer());
-                    responseDTO=new ResponseDTO<>(200,"Status ok");
+                   responseDTO=new ResponseDTO<>(200,"Status ok");
                 }
                 System.out.println(responseDTO);
             }

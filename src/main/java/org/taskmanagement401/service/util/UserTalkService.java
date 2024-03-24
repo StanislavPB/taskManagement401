@@ -107,10 +107,9 @@ public class UserTalkService {
             }
     }
     public static void printAllTasksWithProjects(List<Task> tasks){
-        Collections.sort(tasks, Comparator.comparing(Task::getProject).thenComparing(Task::getPriority));
+        tasks.sort(Comparator.comparing(Task::getProject).thenComparing(Task::getPriority));
         String projectName="";
         for(Task task : tasks){
-
             if(!projectName.equals(task.getProject().getName())){
                 System.out.println("Project : "+task.getProject().getName());
                 projectName=task.getProject().getName();

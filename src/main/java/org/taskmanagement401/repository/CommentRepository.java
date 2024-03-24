@@ -25,8 +25,10 @@ public class CommentRepository
         return new Comment(++id,user,commentDto.getComment());
   }
     public Comment add(User user, CommentDto commentDto, Task task) {
-
-      return create(commentDto,user);
+        Comment comment=create(commentDto,user);
+        commentList.add(comment);
+        task.getComments().add(comment);
+      return comment;
 
     }
 

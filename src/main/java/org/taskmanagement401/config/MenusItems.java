@@ -23,6 +23,7 @@ public class MenusItems {
                 "Add user to task",
                 "Check progress of projects",
                 "Chat",
+                "Check tasks comments",
                 "Exit"));
         menus.put("Chef",menu);
 
@@ -31,6 +32,7 @@ public class MenusItems {
                 "Comment task",
                 "Change task status",
                 "Chat",
+                "Check tasks comments",
                 "Exit"));
         menus.put("Employee",menu);
 
