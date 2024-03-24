@@ -77,7 +77,11 @@ public class BossMenu {
             case 7:
             ChatMenu chatMenu=new ChatMenu(user,servicesGeneration.getUserRepository(),
                     servicesGeneration.getChatRepository());
-            break;
+                break;
+            case 8:
+                CheckCommentMenu checkComment=new CheckCommentMenu(servicesGeneration.getProjectRepository(),
+                        servicesGeneration.getTaskRepository());
+                break;
         }
     }
 }
