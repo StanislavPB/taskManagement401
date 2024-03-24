@@ -59,6 +59,13 @@ public class UserInput {
         System.out.println(dateString);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String sTime = scanner.nextLine();
-        return LocalDate.parse(sTime, dateFormatter);
+        LocalDate date;
+        try {
+           date= LocalDate.parse(sTime, dateFormatter);
+        }
+        catch (Exception e){
+           date=LocalDate.now().minusDays(1);
+        }
+        return date;
     }
 }

@@ -98,5 +98,6 @@ public class Project implements Comparable<Project>{
     public void setStatus(boolean status) {
         this.status = status;
     }
+
 }
 

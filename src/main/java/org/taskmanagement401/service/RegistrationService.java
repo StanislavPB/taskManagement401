@@ -6,6 +6,8 @@ import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.dto.error.ErrorDto;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.UserRepository;
+import org.taskmanagement401.service.dataService.save.SaveSMS_Service;
+import org.taskmanagement401.service.dataService.save.SaveUser;
 import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.UserValidation;
 
@@ -31,6 +33,9 @@ public class RegistrationService {
                         ErrorCodes.WRONGNEWLOGIN.getDescription()));
                 return new ResponseDTO<>(400,errors);
             }else{
+                SaveUser save=new SaveUser();
+                Optional<Exception> result=save.saveUser(user.get());
+                result.ifPresent(System.out::println);
                 return new ResponseDTO<>(200,user.get());
             }
 

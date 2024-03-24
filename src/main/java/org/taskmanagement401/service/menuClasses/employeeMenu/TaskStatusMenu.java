@@ -5,12 +5,14 @@ import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.repository.TaskRepository;
+import org.taskmanagement401.service.TaskChangeStatusService;
+import org.taskmanagement401.service.dataService.rewrite.RewriteTask;
 import org.taskmanagement401.service.util.PrintUserTasks;
 
 import java.util.Optional;
 
 public class TaskStatusMenu {
-    public TaskStatusMenu(User user) {
+    public TaskStatusMenu(User user,TaskRepository taskRepository) {
         if(user.getTask().isEmpty()){
             System.out.println("You don`t have active tasks");
         }else {
@@ -18,8 +20,12 @@ public class TaskStatusMenu {
             if (taskOptional.isEmpty()) {
                 System.out.println("Wrong input data");
             } else {
+                TaskChangeStatusService service=new TaskChangeStatusService();
+                ResponseDTO responseDTO=service.changeStatus(taskOptional.get(),taskRepository);
                 taskOptional.get().setTaskCompleted(true);
-                System.out.println(new ResponseDTO(200,"Status ok"));
+                RewriteTask rewriteTask=new RewriteTask();
+                rewriteTask.rewrite(taskRepository);
+                System.out.println(responseDTO);
             }
         }
     }

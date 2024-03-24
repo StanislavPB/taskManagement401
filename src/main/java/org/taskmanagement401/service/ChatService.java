@@ -7,7 +7,7 @@ import org.taskmanagement401.entity.Message;
 import org.taskmanagement401.entity.User;
 
 import org.taskmanagement401.repository.ChatRepository;
-import org.taskmanagement401.service.dataService.SaveSMS_Service;
+import org.taskmanagement401.service.dataService.save.SaveSMS_Service;
 import org.taskmanagement401.service.validation.ChatValidation;
 
 import java.util.*;

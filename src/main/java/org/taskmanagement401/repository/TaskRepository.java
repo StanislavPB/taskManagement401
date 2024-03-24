@@ -56,6 +56,9 @@ public class TaskRepository {
         }
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public List<Task> findAll() {
         return tasks;

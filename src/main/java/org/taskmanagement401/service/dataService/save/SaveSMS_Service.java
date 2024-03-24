@@ -1,4 +1,4 @@
-package org.taskmanagement401.service.dataService;
+package org.taskmanagement401.service.dataService.save;
 
 import org.taskmanagement401.entity.Message;
 import org.taskmanagement401.repository.ChatRepository;
@@ -18,8 +18,8 @@ public class SaveSMS_Service {
                     +message.getSendTime().getMonthValue()+","+message.getSendTime().getDayOfMonth()+","+
                     message.getSendTime().getHour()+","+message.getSendTime().getMinute()+","
                     +message.getSendTime().getSecond();
-            writer.append("\n");
             writer.append(strToAppend);
+            writer.append("\n");
             writer.close();
         }catch (Exception e){
             return Optional.of(e);

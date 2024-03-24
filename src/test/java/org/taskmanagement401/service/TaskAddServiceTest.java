@@ -3,6 +3,7 @@ package org.taskmanagement401.service;
 import org.junit.jupiter.api.Test;
 import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.dto.TaskDto;
+import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.repository.TaskRepository;
 
 import java.time.LocalDate;
@@ -17,7 +18,9 @@ class TaskAddServiceTest {
         TaskDto taskDto=new TaskDto("Task1",localDate,1);
         TaskRepository taskRepository= new TaskRepository();
         TaskAddService taskAddService = new TaskAddService(taskRepository);
-        ResponseDTO responseDTO = taskAddService.registration(taskDto);
+        ResponseDTO responseDTO = taskAddService.registration(taskDto,new Project(
+                1,"Test Project","Description")
+        );
         assertEquals(400,responseDTO.getCode());
     }
 
@@ -27,7 +30,9 @@ class TaskAddServiceTest {
         TaskDto taskDto=new TaskDto("Task2",localDate,1);
         TaskRepository taskRepository= new TaskRepository();
         TaskAddService taskAddService = new TaskAddService(taskRepository);
-        ResponseDTO responseDTO = taskAddService.registration(taskDto);
+        ResponseDTO responseDTO = taskAddService.registration(taskDto,new Project(
+                1,"Test Project","Description")
+        );
         assertEquals(200,responseDTO.getCode());
     }
 }
