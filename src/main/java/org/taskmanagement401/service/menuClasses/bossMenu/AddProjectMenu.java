@@ -11,11 +11,13 @@ public class AddProjectMenu {
 
     public AddProjectMenu(ProjectRepository projectRepository) {
         UserTalkService.projectInformation();
-        ProjectAddService addService=new ProjectAddService(projectRepository);
-        ProjectDto dto= UserTalkService.getProjectParameters();
-        ResponseDTO dtoResponse=
-                addService.registration(dto);
-        // System.out.println(dtoResponse);*/
-        //ProjectDto dto= UserTalkService.getProjectParameters();
+        ProjectAddService addService = new ProjectAddService(projectRepository);
+        ProjectDto dto = UserTalkService.getProjectParameters();
+        ResponseDTO dtoResponse = addService.registration(dto);
+        if (dtoResponse.getCode() == 200) {
+            System.out.println("Project successfully added: " + dtoResponse.getAnswer());
+        } else {
+            System.out.println("Error adding project: " + dtoResponse.getAnswer());
+        }
     }
 }

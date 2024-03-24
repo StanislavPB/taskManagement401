@@ -11,13 +11,10 @@ import java.util.List;
 public class CommentValidation {
     public List<ErrorDto> checkComment (CommentDto text){
         List<ErrorDto> errors=new ArrayList<>();
-        if(text.getComment().length()<5){
-            errors.add(new ErrorDto(ErrorCodes.WRONGDESCRIPTIONLENGTH.getStatusCode(),
-                    ErrorCodes.WRONGDESCRIPTIONLENGTH.getDescription()));
-        }
+
         if(text.getComment().isBlank()) {
-            errors.add(new ErrorDto(ErrorCodes.WRONGDESCRIPTIONLENGTH.getStatusCode(),
-                    ErrorCodes.WRONGDESCRIPTIONLENGTH.getDescription()));
+            errors.add(new ErrorDto(ErrorCodes.BLANKDATA.getStatusCode(),
+                    ErrorCodes.BLANKDATA.getDescription()));
         }
         return errors;
     }
