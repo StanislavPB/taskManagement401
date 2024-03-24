@@ -17,4 +17,13 @@ class AuthorizationServiceTest {
         ResponseDTO responseDTO=service.verification(dto);
         assertEquals(400,responseDTO.getCode());
     }
+  /*  @Test
+    void verification2() {
+        UserDto dto=new UserDto("Chapligin V","Chapligin","password4");
+        UserRepository repository =new UserRepository();
+        AuthorizationService service=new AuthorizationService(repository);
+        ResponseDTO responseDTO=service.verification(dto);
+        assertEquals(200,responseDTO.getCode());
+    }*/
+
 }

@@ -19,4 +19,5 @@ class ChatServiceTest {
         ResponseDTO responseDTO=service.addNewSMS(dto,user,2);
         assertEquals(400,responseDTO.getCode());
     }
+
 }
