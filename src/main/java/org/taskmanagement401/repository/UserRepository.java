@@ -63,7 +63,9 @@ public class UserRepository {
         }
         return Optional.empty();
     }
-
+    public HashMap<Integer,User> getUsersMap() {
+        return  users;
+    }
     public List<User> getUsers() {
         if(users.isEmpty()){
             return new ArrayList<>();
@@ -85,4 +87,7 @@ public class UserRepository {
         }
     }
 
+    public void setCurrentId(int currentId) {
+        this.currentId = currentId;
+    }
 }

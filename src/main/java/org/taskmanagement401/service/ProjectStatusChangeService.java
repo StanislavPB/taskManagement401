@@ -2,6 +2,7 @@ package org.taskmanagement401.service;
 
 import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.repository.ProjectRepository;
+import org.taskmanagement401.service.dataService.rewrite.RewriteProject;
 
 import java.util.Optional;
 
@@ -18,6 +19,8 @@ public class ProjectStatusChangeService {
         if (projectOpt.isPresent()) {
             Project project = projectOpt.get();
             project.setStatus(true);
+            RewriteProject rewriteProject=new RewriteProject();
+            rewriteProject.rewrite(projectRepository);
             return true;
         }
         return false;

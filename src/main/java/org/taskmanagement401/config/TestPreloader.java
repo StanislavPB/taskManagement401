@@ -2,22 +2,49 @@ package org.taskmanagement401.config;
 
 import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.dto.TaskDto;
-import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.entity.Comment;
-import org.taskmanagement401.entity.Message;
+import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.Task;
-import org.taskmanagement401.repository.ChatRepository;
 import org.taskmanagement401.service.ServicesGeneration;
-import org.taskmanagement401.service.dataService.LoadSMS_Service;
+import org.taskmanagement401.service.dataService.load.*;
 
+import java.io.FilterOutputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class TestPreloader {
     public TestPreloader(ServicesGeneration mainServices) {
-        UserDto dto=new UserDto("Saize A","Saize","password1");
+        LoadUser loadUser=new LoadUser();
+        Optional<Exception> result= loadUser.load(mainServices.getUserRepository());
+        result.ifPresent(System.out::println);
+
+        LoadProjects loadProjects=new LoadProjects();
+        result=loadProjects.load(mainServices.getProjectRepository());
+        result.ifPresent(System.out::println);
+
+        LoadTask loadTask=new LoadTask();
+        result = loadTask.load(mainServices.getTaskRepository());
+        result.ifPresent(System.out::println);
+
+        LoadSMS_Service load=new LoadSMS_Service();
+        result= load.load(mainServices.getUserRepository(), mainServices.getChatRepository());
+        result.ifPresent(System.out::println);
+
+        LoadComment loadComment=new LoadComment();
+        result= loadComment.load(mainServices.getUserRepository(),mainServices.getCommentRepository());
+        result.ifPresent(System.out::println);
+
+        LoadLists loadLists=new LoadLists();
+        loadLists.loadTasks(mainServices);
+        loadLists.loadUserToProject(mainServices);
+        loadLists.loadUserToTask(mainServices);
+        loadLists.loadCommentList(mainServices);
+
+
+
+
+       /* UserDto dto=new UserDto("Saize A","Saize","password1");
         mainServices.getUserRepository().addNewUser(dto);
         dto=new UserDto("Filipchenko Y","Filipchenko","password2");
         mainServices.getUserRepository().addNewUser(dto);
@@ -35,16 +62,17 @@ public class TestPreloader {
         mainServices.getUserRepository().addNewUser(dto);
         dto=new UserDto("Ivanov I(Boss)","leader","password9");
         mainServices.getUserRepository().addNewUser(dto,true);
+*/
 
 
-        mainServices.getProjectRepository().addProject(new ProjectDto("Project1",
+        /* mainServices.getProjectRepository().addProject(new ProjectDto("Project1",
                 "This is project 1"));
         mainServices.getProjectRepository().addProject(new ProjectDto("Project2",
                 "This is project 2"));
         mainServices.getProjectRepository().addProject(new ProjectDto("Project3",
                 "This is project 3"));
-
-        mainServices.getTaskRepository().addTask(new TaskDto("Task1",LocalDate.of(2024,2,21),1));
+*/
+        /*mainServices.getTaskRepository().addTask(new TaskDto("Task1",LocalDate.of(2024,2,21),1));
         mainServices.getTaskRepository().addTask(new TaskDto("Task2",LocalDate.of(2024,4,21),2));
         mainServices.getTaskRepository().addTask(new TaskDto("Task3",LocalDate.of(2024,4,3),3));
         mainServices.getTaskRepository().addTask(new TaskDto("Task4",LocalDate.of(2024,4,21),1));
@@ -139,9 +167,9 @@ public class TestPreloader {
                 new Comment(2,mainServices.getUserRepository().getUserById(2).get(),
                         "Help.")
         );
-        LoadSMS_Service load=new LoadSMS_Service();
-        Optional<Exception> result= load.load(mainServices.getUserRepository(), mainServices.getChatRepository());
+LoadSMS_Service load=new LoadSMS_Service();
+        result= load.load(mainServices.getUserRepository(), mainServices.getChatRepository());
         result.ifPresent(System.out::println);
-
+*/
     }
 }

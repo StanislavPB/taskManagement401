@@ -8,7 +8,7 @@ public enum ErrorCodes {
     WRONGNEWLOGIN("The user with your login is already exist. Registration is impossible.",404),
     WRONGLOGINDATA("Login or password is wrong.",405),
     WRONGDESCRIPTIONLENGTH("Description length must be longer then 10 letters.",406),
-    WRONGDATE("Date can't be in the past",407),
+    WRONGDATE("Wrong date",407),
     WRONGPRIORITYSTATUS("Wrong status",408),
     ADDINGFAIL("Didn't add",409),
     SHORTMESSAGE("The length must be longer then 4 letters.",410),

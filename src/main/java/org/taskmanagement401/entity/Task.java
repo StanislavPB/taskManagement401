@@ -42,6 +42,9 @@ public class Task {
     public Priority getPriority() {
         return priority;
     }
+    public int getPriorityValue(){
+        return priority.getStatusPriority();
+    }
 
     public boolean isTaskCompleted() {
         return taskCompleted;
@@ -77,6 +80,7 @@ public class Task {
     public void setProject(Project project) {
         this.project = project;
     }
+
 
     @Override
     public boolean equals(Object object) {
