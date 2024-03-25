@@ -1,4 +1,4 @@
-package org.taskmanagement401.service.menuClasses.bossMenu;
+package org.taskmanagement401.front.menuClasses.bossMenu;
 
 import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.entity.Project;

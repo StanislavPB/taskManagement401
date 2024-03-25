@@ -1,4 +1,4 @@
-package org.taskmanagement401.service.manus;
+package org.taskmanagement401.front.manus;
 
 
 
@@ -15,7 +15,6 @@ import org.taskmanagement401.service.ServicesGeneration;
 import org.taskmanagement401.service.util.UserTalkService;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 
 public class MainMenu {
