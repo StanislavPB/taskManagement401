@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-public class UserRepository {
-    private HashMap<Integer,User> users=new HashMap<>();
+public class UserRepository implements UserInterface {
+    private final HashMap<Integer,User> users = new HashMap<>();
     private int currentId=0;
     public Optional<User> getUserIdByLoginAndPassword(UserDto dto){
         Optional<User> user=findUserByLogin(dto.getLogin());
@@ -22,7 +22,7 @@ public class UserRepository {
                 return Optional.empty();
         }
     }
-
+    @Override
     public Optional<User> addNewUser(UserDto dto){
             Optional<User>user=createNewUser(dto,false);
             if(user.isEmpty()){
@@ -32,6 +32,7 @@ public class UserRepository {
                 return user;
             }
     }
+    @Override
     public Optional<User> addNewUser(UserDto dto,boolean boss){
         Optional<User>user=createNewUser(dto,boss);
         if(user.isEmpty()){
@@ -72,12 +73,14 @@ public class UserRepository {
         }
         return new ArrayList<>(users.values());
     }
+    @Override
     public List<User> getUsersWithoutBoss() {
         if(users.isEmpty()){
             return new ArrayList<>();
         }
         return new ArrayList<>(users.values().stream().filter(x->x.getStatus()!=1).toList());
     }
+    @Override
     public Optional<User> getUserById(int id){
         User user=users.get(id);
         if(user != null){
