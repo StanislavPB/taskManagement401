@@ -23,10 +23,10 @@ class ProjectStatusChangeServiceTest {
                 return Optional.ofNullable(projects.get(id));
             }
             @Override
-            public boolean addProject(ProjectDto projectDto) {
+            public Project addProject(ProjectDto projectDto) {
                 Project project = new Project(currentId++, projectDto.getName(), projectDto.getDescription());
                 projects.put(project.getId(), project);
-                return true;
+                return project;
             }
         };
 
@@ -46,14 +46,18 @@ class ProjectStatusChangeServiceTest {
     void testMarkProjectAsCompletedProjectNotFound() {
         ProjectRepository repository = new ProjectRepository() {
             private final Map<Integer, Project> projects = new HashMap<>();
+            private int currentId = 1;
             @Override
             public Optional<Project> findById(int id) {
                 return Optional.ofNullable(projects.get(id));
             }
             @Override
-            public boolean addProject(ProjectDto projectDto) {
-                return false;
+            public Project addProject(ProjectDto projectDto) {
+                Project project = new Project(currentId++, projectDto.getName(),  projectDto.getDescription());
+                projects.put(project.getId(), project);
+                return project;
             }
+
         };
 
         ProjectStatusChangeService service = new ProjectStatusChangeService(repository);

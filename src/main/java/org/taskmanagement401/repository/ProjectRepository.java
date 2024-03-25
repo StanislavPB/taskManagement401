@@ -11,9 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ProjectRepository
-        //implements ProjectRepositoryInterface
-{
+public class ProjectRepository implements ProjectRepositoryInterface {
 
     private final HashMap<Integer,Project> projects;
     private int currentId = 0;
@@ -22,6 +20,7 @@ public class ProjectRepository
         this.projects = new HashMap<>();
     }
 
+    @Override
      public Project addProject(ProjectDto dto) {
         Project project=createNewProject(dto);
         projects.put(project.getId(),project);
@@ -31,7 +30,7 @@ public class ProjectRepository
             return new Project(++currentId, dto.getName(), dto.getDescription());
         }
 
-
+    @Override
     public boolean updateProjectDescription(int projectId, String newDescription) {
         for (Project project : projects.values()) {
             if (project.getId() == projectId) {
@@ -41,6 +40,7 @@ public class ProjectRepository
         }
         return false;
     }
+    @Override
     public Optional<Project> findById(int id) {
         Project project=projects.get(id);
         if (project != null) {
@@ -49,16 +49,19 @@ public class ProjectRepository
         return Optional.empty();
     }
 
+    @Override
     public List<Project> findAll() {
         return new ArrayList<>(projects.values());
     }
 
+    @Override
     public List<Project> findAllActiveProjects() {
         return projects.values().stream()
                 .filter(project -> !project.isStatus())
                 .collect(Collectors.toList());
     }
 
+    @Override
     public HashMap<Integer, Project> getProjects() {
         return projects;
     }

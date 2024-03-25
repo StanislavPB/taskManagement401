@@ -1,21 +1,12 @@
-package org.taskmanagement401.service.manus;
+package org.taskmanagement401.front.manus;
 
 import org.taskmanagement401.config.MenusItems;
-import org.taskmanagement401.dto.ProjectDto;
-import org.taskmanagement401.dto.ResponseDTO;
-import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.User;
-import org.taskmanagement401.repository.ProjectRepository;
-import org.taskmanagement401.repository.TaskRepository;
+import org.taskmanagement401.front.menuClasses.bossMenu.*;
 import org.taskmanagement401.service.*;
-import org.taskmanagement401.service.menuClasses.bossMenu.*;
-import org.taskmanagement401.service.menuClasses.employeeMenu.ChatMenu;
-import org.taskmanagement401.service.util.UserInput;
-import org.taskmanagement401.service.util.UserTalkService;
-import org.taskmanagement401.service.validation.ProjectValidation;
+import org.taskmanagement401.front.menuClasses.employeeMenu.ChatMenu;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BossMenu {
     private Menu menu=new Menu();
@@ -80,6 +71,10 @@ public class BossMenu {
                 break;
             case 8:
                 CheckCommentMenu checkComment=new CheckCommentMenu(servicesGeneration.getProjectRepository(),
+                        servicesGeneration.getTaskRepository());
+                break;
+            case 9:
+                EditTaskMenu editTaskMenu=new EditTaskMenu(servicesGeneration.getProjectRepository(),
                         servicesGeneration.getTaskRepository());
                 break;
         }

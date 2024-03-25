@@ -1,11 +1,12 @@
-package org.taskmanagement401.service.manus;
+package org.taskmanagement401.front.manus;
 
+import org.taskmanagement401.front.menuClasses.employeeMenu.ChatMenu;
+import org.taskmanagement401.front.menuClasses.employeeMenu.CheckCommentMenuUser;
+import org.taskmanagement401.front.menuClasses.employeeMenu.CommentMenu;
+import org.taskmanagement401.front.menuClasses.employeeMenu.TaskStatusMenu;
 import org.taskmanagement401.config.MenusItems;
 import org.taskmanagement401.entity.User;
-import org.taskmanagement401.repository.ProjectRepository;
 import org.taskmanagement401.service.ServicesGeneration;
-import org.taskmanagement401.service.menuClasses.employeeMenu.*;
-import org.taskmanagement401.service.util.UserTalkService;
 
 import java.util.ArrayList;
 

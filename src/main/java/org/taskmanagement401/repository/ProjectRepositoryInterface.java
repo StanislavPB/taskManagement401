@@ -1,21 +1,22 @@
 package org.taskmanagement401.repository;
 
+import org.taskmanagement401.dto.ProjectDto;
 import org.taskmanagement401.entity.Project;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 public interface ProjectRepositoryInterface {
 
-    public void addProject (Project newProject);
+    public Project addProject(ProjectDto dto);
 
     public Optional<Project> findById(int id);
 
-    public Optional<Project> findByName(String name);
 
     public List<Project> findAll();
-
-    public void deleteById (int id);
-
+    public HashMap<Integer, Project> getProjects();
+    public List<Project> findAllActiveProjects();
+    public boolean updateProjectDescription(int projectId, String newDescription);
 
 }

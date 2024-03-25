@@ -27,4 +27,5 @@ public class TaskDto {
     public Priority getPriority() {
         return priority;
     }
+
 }
