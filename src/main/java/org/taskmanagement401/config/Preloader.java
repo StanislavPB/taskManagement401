@@ -1,20 +1,12 @@
 package org.taskmanagement401.config;
 
-import org.taskmanagement401.dto.ProjectDto;
-import org.taskmanagement401.dto.TaskDto;
-import org.taskmanagement401.entity.Comment;
-import org.taskmanagement401.entity.Project;
-import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.service.ServicesGeneration;
 import org.taskmanagement401.service.dataService.load.*;
 
-import java.io.FilterOutputStream;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
-public class TestPreloader {
-    public TestPreloader(ServicesGeneration mainServices) {
+public class Preloader {
+    public Preloader(ServicesGeneration mainServices) {
         LoadUser loadUser=new LoadUser();
         Optional<Exception> result= loadUser.load(mainServices.getUserRepository());
         result.ifPresent(System.out::println);

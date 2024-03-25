@@ -1,4 +1,4 @@
-package org.taskmanagement401.service.menuClasses.employeeMenu;
+package org.taskmanagement401.front.menuClasses.employeeMenu;
 
 import org.taskmanagement401.dto.CommentDto;
 import org.taskmanagement401.dto.ResponseDTO;
