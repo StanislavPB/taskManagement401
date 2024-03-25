@@ -7,10 +7,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatRepository {
+public class ChatRepository implements ChatInterface {
 
         private List<Message> sms=new ArrayList<>();
         private int id=0;
+    @Override
         public Message addSMS(String content, User sender, int receiver){
             Message newSMS=createSMS(content, sender, receiver);
             sms.add(newSMS);

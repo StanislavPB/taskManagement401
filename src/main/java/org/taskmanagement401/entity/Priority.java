@@ -14,4 +14,7 @@ public enum Priority {
         return statusPriority;
     }
 
+    public void setStatusPriority(int statusPriority) {
+        this.statusPriority = statusPriority;
+    }
 }

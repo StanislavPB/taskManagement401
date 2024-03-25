@@ -1,8 +1,10 @@
 package org.taskmanagement401.repository;
 
 import org.taskmanagement401.dto.TaskDto;
+import org.taskmanagement401.entity.Priority;
 import org.taskmanagement401.entity.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +59,34 @@ public class TaskRepository implements TaskRepositoryInterface {
             return Optional.empty();
         }
     }
-
+    public boolean updateTaskName(int taskId, String newName) {
+        for (Task task : tasks) {
+            if (task.getTaskID() == taskId) {
+                task.setTaskName(newName);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean updateTaskDate(int taskId, LocalDate date) {
+        for (Task task : tasks) {
+            if (task.getTaskID() == taskId) {
+                task.setEndDate(date);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean updateTaskPriority(int taskId, int statusPriority) {
+        for (Task task : tasks) {
+            if (task.getTaskID() == taskId) {
+                Priority newPriority = Task.fromStatusPriority(statusPriority);
+                task.setPriority(newPriority);
+                 return true;
+            }
+        }
+        return false;
+    }
     public void setId(Integer id) {
         this.id = id;
     }

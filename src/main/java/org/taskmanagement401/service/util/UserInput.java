@@ -2,6 +2,7 @@ package org.taskmanagement401.service.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class UserInput {
@@ -57,15 +58,25 @@ public class UserInput {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(dateString);
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String sTime = scanner.nextLine();
-        LocalDate date;
-        try {
-           date= LocalDate.parse(sTime, dateFormatter);
+        DateTimeFormatter[] dateFormatters = {
+                DateTimeFormatter.ofPattern("dd.MM.yyyy"),
+                DateTimeFormatter.ofPattern("dd.MM.yy")
+        };
+
+        LocalDate date = null;
+
+        while (date == null) {
+            String sTime = scanner.nextLine();
+            for (DateTimeFormatter dateFormatter : dateFormatters) {
+                try {
+                    date = LocalDate.parse(sTime, dateFormatter);
+                    break;
+                } catch (DateTimeParseException e) {
+                    System.out.println("Incorrect date format. Available formats dd.MM.yyyy или dd.MM.yy:");
+                }
+            }
         }
-        catch (Exception e){
-           date=LocalDate.now().minusDays(1);
-        }
+
         return date;
     }
 }
