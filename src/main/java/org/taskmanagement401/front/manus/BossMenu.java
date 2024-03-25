@@ -73,6 +73,10 @@ public class BossMenu {
                 CheckCommentMenu checkComment=new CheckCommentMenu(servicesGeneration.getProjectRepository(),
                         servicesGeneration.getTaskRepository());
                 break;
+            case 9:
+                EditTaskMenu editTaskMenu=new EditTaskMenu(servicesGeneration.getProjectRepository(),
+                        servicesGeneration.getTaskRepository());
+                break;
         }
     }
 }

@@ -24,6 +24,7 @@ public class MenusItems {
                 "Check progress of projects",
                 "Chat",
                 "Check tasks comments",
+                "Edit task",
                 "Exit"));
         menus.put("Chef",menu);
 
