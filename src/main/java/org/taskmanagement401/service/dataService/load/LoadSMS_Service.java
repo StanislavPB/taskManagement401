@@ -1,4 +1,4 @@
-package org.taskmanagement401.service.dataService;
+package org.taskmanagement401.service.dataService.load;
 
 import org.taskmanagement401.entity.Message;
 import org.taskmanagement401.repository.ChatRepository;
@@ -22,12 +22,14 @@ public class LoadSMS_Service {
            int id=0;
             while ((line=br.readLine())!= null){
                 String[] elements=line.split(",");
-                Message sms = getMessage(elements);
-                userRepository.getUserById(Integer.parseInt(elements[1])).get().getSms().add(
-                        sms
-                );
-                chatRepository.getSms().add(sms);
-                chatRepository.setId(++id);
+                if(elements.length!=0) {
+                    Message sms = getMessage(elements);
+                    userRepository.getUserById(Integer.parseInt(elements[1])).get().getSms().add(
+                            sms
+                    );
+                    chatRepository.getSms().add(sms);
+                    chatRepository.setId(++id);
+                }
             }
             br.close();
         }

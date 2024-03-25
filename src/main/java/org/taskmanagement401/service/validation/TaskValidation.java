@@ -29,6 +29,7 @@ public class TaskValidation {
         if (dto.getEndDate() == null || dto.getEndDate().isBefore(LocalDate.now())){
             errors.add(new ErrorDto(ErrorCodes.WRONGDATE.getStatusCode(), ErrorCodes.WRONGDATE.getDescription()));
         }
+
          if(dto.getPriority() == null || dto.getPriority().getStatusPriority() != 1 && dto.getPriority().getStatusPriority() != 2 && dto.getPriority().getStatusPriority() != 3){
              errors.add(new ErrorDto(ErrorCodes.WRONGPRIORITYSTATUS.getStatusCode(), ErrorCodes.WRONGPRIORITYSTATUS.getDescription()));
          }

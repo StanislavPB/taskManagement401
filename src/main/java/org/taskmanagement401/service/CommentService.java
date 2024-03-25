@@ -8,6 +8,7 @@ import org.taskmanagement401.entity.Project;
 import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.entity.User;
 import org.taskmanagement401.repository.CommentRepository;
+import org.taskmanagement401.service.dataService.save.SaveComment;
 import org.taskmanagement401.service.validation.CommentValidation;
 
 import java.util.List;
@@ -28,7 +29,11 @@ public class CommentService {
                 validation.checkComment(commentDto);
 
         if (errors.isEmpty()) {
-            return new ResponseDTO<>(200, commentRepository.add(user, commentDto, task));
+            Comment comment=commentRepository.add(user, commentDto, task);
+            SaveComment saveComment= new SaveComment();
+            saveComment.save(comment);
+            saveComment.saveList(task,comment);
+            return new ResponseDTO<>(200, comment);
         } else {
             return new ResponseDTO<>(400, errors);
         }

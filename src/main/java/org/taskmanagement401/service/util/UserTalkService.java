@@ -42,8 +42,8 @@ public class UserTalkService {
     }
     public  static TaskDto getTaskParameters(){
         String name= UserInput.inputText("Enter name of Task");
-        LocalDate date = UserInput.inputDate("Enter deadline date in format dd.mm.yy");
-        int priority = UserInput.inputInteger("Enter priority(Use 3 for High priority, 2 - Medium, 1 - Low)");
+        LocalDate date = UserInput.inputDate("Enter deadline date in format dd.mm.yyyy");
+        int priority = UserInput.inputPositiveInt("Enter priority(Use 3 for High priority, 2 - Medium, 1 - Low)");
         return new TaskDto(name, date, priority);
     }
     public static void taskInformation(){
@@ -80,7 +80,6 @@ public class UserTalkService {
         for (Task task : tasks) {
             if (!task.isTaskCompleted()) {
                 System.out.println(task.getTaskID() + " " + task.getTaskName() + " " + task.getPriority() + " " + task.getEndDate());
-                System.out.println("Id - " + task.getTaskID() + ":  " + task.getPriority() + "/" + task.getTaskName() + "/" + task.getEndDate());
 
             }
         }
@@ -109,6 +108,7 @@ public class UserTalkService {
     public static void printAllTasksWithProjects(List<Task> tasks){
         tasks.sort(Comparator.comparing(Task::getProject).thenComparing(Task::getPriority));
         String projectName="";
+        System.out.println(tasks);
         for(Task task : tasks){
             if(!projectName.equals(task.getProject().getName())){
                 System.out.println("Project : "+task.getProject().getName());

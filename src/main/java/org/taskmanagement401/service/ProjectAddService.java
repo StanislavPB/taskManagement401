@@ -6,6 +6,7 @@ import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.dto.UserDto;
 import org.taskmanagement401.dto.error.ErrorDto;
 import org.taskmanagement401.repository.ProjectRepository;
+import org.taskmanagement401.service.dataService.save.SaveProject;
 import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.ProjectValidation;
 
@@ -25,12 +26,10 @@ public class ProjectAddService {
                 validation.
                         checkProject(dto);
         if(errors.isEmpty()){
-            if(projectRepository.addProject(dto)){
+            SaveProject saveProject=new SaveProject();
+            saveProject.save(projectRepository.addProject(dto));
                 return new ResponseDTO<>(200,"status ok");
-            }else{
-                return new ResponseDTO<>(400,errors);
-            }
-        }else {
+            }else {
             return new ResponseDTO<>(400, errors);
         }
     }

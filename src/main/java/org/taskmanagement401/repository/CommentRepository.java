@@ -7,6 +7,7 @@ import org.taskmanagement401.entity.Task;
 import org.taskmanagement401.entity.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +15,11 @@ public class CommentRepository
 //        implements CommentInterface
 {
 
-    private List<Comment> commentList;
+    private HashMap<Integer,Comment> commentList;
     private int id = 0;
 
     public CommentRepository() {
-        this.commentList = new ArrayList<>();
+        this.commentList = new HashMap<>();
     }
 
   private Comment create ( CommentDto commentDto,User user){
@@ -26,11 +27,20 @@ public class CommentRepository
   }
     public Comment add(User user, CommentDto commentDto, Task task) {
         Comment comment=create(commentDto,user);
-        commentList.add(comment);
+        commentList.put(comment.getId(),comment);
         task.getComments().add(comment);
       return comment;
 
     }
+    public Comment getCommentById(Integer id){
+        return commentList.get(id);
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public HashMap<Integer, Comment> getCommentList() {
+        return commentList;
+    }
 }

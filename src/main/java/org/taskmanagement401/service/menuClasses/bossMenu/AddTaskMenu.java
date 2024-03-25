@@ -48,9 +48,7 @@ public class AddTaskMenu {
             UserTalkService.taskInformation();
             TaskAddService taskAddService = new TaskAddService(taskRepository);
             TaskDto taskDto = UserTalkService.getTaskParameters();
-            ResponseDTO<Task> responseDTO = taskAddService.registration(taskDto);
-            Task newTask = responseDTO.getAnswer();
-            project.getTasks().add(newTask);
+            ResponseDTO<Task> responseDTO = taskAddService.registration(taskDto,project);
             System.out.println(responseDTO);
 
         }
