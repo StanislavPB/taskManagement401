@@ -35,8 +35,13 @@ public class RegistrationService {
             }else{
                 SaveUser save=new SaveUser();
                 Optional<Exception> result=save.saveUser(user.get());
-                result.ifPresent(System.out::println);
-                return new ResponseDTO<>(200,user.get());
+                if(result.isPresent()){
+                    errors.add(new ErrorDto(ErrorCodes.DATASAVING.getStatusCode(),
+                            ErrorCodes.DATASAVING.getDescription()+result.get().getMessage()));
+                    return new ResponseDTO<>(400,errors);
+                }else {
+                    return new ResponseDTO<>(200, user.get());
+                }
             }
 
         }else{
