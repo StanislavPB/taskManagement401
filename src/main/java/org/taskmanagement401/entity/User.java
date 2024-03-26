@@ -44,6 +44,12 @@ public class User {
     public List<Task> getTask() {
         return task;
     }
+    public List<Task> getActiveTask() {
+        List<Task> result=new ArrayList<>(task.stream()
+                .filter(task1 -> !task1.isTaskCompleted()).toList());
+
+        return result;
+    }
 
     public List<Message> getSms() {
         return sms;
