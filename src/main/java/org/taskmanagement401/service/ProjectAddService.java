@@ -11,6 +11,7 @@ import org.taskmanagement401.service.util.UserTalkService;
 import org.taskmanagement401.service.validation.ProjectValidation;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProjectAddService {
     ProjectValidation validation=new ProjectValidation();
@@ -27,8 +28,14 @@ public class ProjectAddService {
                         checkProject(dto);
         if(errors.isEmpty()){
             SaveProject saveProject=new SaveProject();
-            saveProject.save(projectRepository.addProject(dto));
-                return new ResponseDTO<>(200,"status ok");
+            Optional<Exception> result=saveProject.save(projectRepository.addProject(dto));
+            if(result.isPresent()){
+                errors.add(new ErrorDto(ErrorCodes.DATASAVING.getStatusCode(),
+                        ErrorCodes.DATASAVING.getDescription()+result.get().getMessage()));
+                return new ResponseDTO<>(400,errors);
+            }else {
+                return new ResponseDTO<>(200, "Status ok");
+            }
             }else {
             return new ResponseDTO<>(400, errors);
         }
