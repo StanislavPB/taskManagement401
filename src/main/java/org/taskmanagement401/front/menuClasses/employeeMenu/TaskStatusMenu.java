@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class TaskStatusMenu {
     public TaskStatusMenu(User user,TaskRepository taskRepository) {
-        if(user.getTask().isEmpty()){
+        if(user.getActiveTask().isEmpty()){
             System.out.println("You don`t have active tasks");
         }else {
             Optional<Task> taskOptional = PrintUserTasks.print(user);
