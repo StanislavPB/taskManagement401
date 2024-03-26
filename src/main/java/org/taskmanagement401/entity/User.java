@@ -45,9 +45,10 @@ public class User {
         return task;
     }
     public List<Task> getActiveTask() {
-        List<> result=new ArrayList<>(task.stream()
+        List<Task> result=new ArrayList<>(task.stream()
                 .filter(task1 -> !task1.isTaskCompleted()).toList());
-       return result;
+
+        return result;
     }
 
     public List<Message> getSms() {
