@@ -1,5 +1,6 @@
 package org.taskmanagement401.service;
 
+import org.taskmanagement401.config.ErrorCodes;
 import org.taskmanagement401.dto.ChatDTO;
 import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.dto.error.ErrorDto;
@@ -39,9 +40,14 @@ public class ChatService {
                 Message sms =chatRepository.addSMS(chatDTO.getSms(), sender, receiver);
                 SaveSMS_Service save=new SaveSMS_Service();
                 Optional<Exception> result=save.saveSMS(sms);
-                result.ifPresent(System.out::println);
-                return new ResponseDTO<>(200, "Status ok");
-            } else {
+                if(result.isPresent()){
+                    errors.add(new ErrorDto(ErrorCodes.DATASAVING.getStatusCode(),
+                            ErrorCodes.DATASAVING.getDescription()+result.get().getMessage()));
+                    return new ResponseDTO<>(400,errors);
+                }else {
+                    return new ResponseDTO<>(200, "Status ok");
+                }
+                } else {
                 return new ResponseDTO<>(400, errors);
             }
     }

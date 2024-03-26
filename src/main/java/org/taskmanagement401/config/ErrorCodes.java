@@ -10,9 +10,8 @@ public enum ErrorCodes {
     WRONGDESCRIPTIONLENGTH("Description length must be longer then 10 letters.",406),
     WRONGDATE("Wrong date",407),
     WRONGPRIORITYSTATUS("Wrong status",408),
-    ADDINGFAIL("Didn't add",409),
-    SHORTMESSAGE("The length must be longer then 4 letters.",410),
-    BLANKDATA("The entered data must not be blank. ",411);
+    BLANKDATA("The entered data must not be blank. ",411),
+    DATASAVING("Error with database update:  ",412);
 
     private String description;
     private int statusCode;
