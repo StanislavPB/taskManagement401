@@ -19,15 +19,7 @@ import java.util.stream.Collectors;
 public class AddTaskMenu {
     public AddTaskMenu(ProjectRepository projectRepository, TaskRepository taskRepository) {
         System.out.println("List of all active Projects:");
-        List<Project> projects = projectRepository.findAll();
-        UserTalkService.printAllProjects(projects);
-
-        int projectChoice = UserInput.inputPositiveInt("Choose a project by ID to add Task: ");
-
-        Optional<Project> optionalProject = projects.stream()
-                .filter(project -> project.getId() == projectChoice)
-                .findFirst();
-
+        Optional<Project> optionalProject = PrintActiveProjects.print(projectRepository);
 
 
         if (optionalProject.isEmpty()){

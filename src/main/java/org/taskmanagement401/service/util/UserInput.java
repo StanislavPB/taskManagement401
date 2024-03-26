@@ -72,7 +72,7 @@ public class UserInput {
                     date = LocalDate.parse(sTime, dateFormatter);
                     break;
                 } catch (DateTimeParseException e) {
-                    System.out.println("Incorrect date format. Available formats dd.MM.yyyy или dd.MM.yy:");
+                    System.out.println();
                 }
             }
         }
