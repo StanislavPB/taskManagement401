@@ -7,6 +7,7 @@ import org.taskmanagement401.service.ProjectEditService;
 import org.taskmanagement401.service.util.UserInput;
 import org.taskmanagement401.service.util.UserTalkService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,9 @@ public class EditProjectMenu {
 
     public EditProjectMenu(ProjectRepository projectRepository) {
         System.out.println("Select a project to edit:");
-        List<Project> projects = projectRepository.findAll();
+       // List<Project> projects = projectRepository.findAll();
+        List<Project> projects = new ArrayList<>(projectRepository.findAll().stream().
+                filter(project -> !project.isStatus()).toList());
         UserTalkService.printAllProjects(projects);
 
         int projectChoice = UserInput.inputPositiveInt("Choose a project by ID to edit: ");
