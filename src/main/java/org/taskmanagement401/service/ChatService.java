@@ -30,13 +30,13 @@ public class ChatService {
             resultSMS.sort(Comparator.comparing(Message::getSendTime));
             return resultSMS;
     }
-    public ResponseDTO addNewSMS(ChatDTO commentDto, User sender, int receiver) {
+    public ResponseDTO addNewSMS(ChatDTO chatDTO, User sender, int receiver) {
             ChatValidation validation = new ChatValidation();
             List<ErrorDto> errors =
-                    validation.checkSMS(commentDto);
+                    validation.checkSMS(chatDTO);
 
             if (errors.isEmpty()) {
-                Message sms =chatRepository.addSMS(commentDto.getSms(), sender, receiver);
+                Message sms =chatRepository.addSMS(chatDTO.getSms(), sender, receiver);
                 SaveSMS_Service save=new SaveSMS_Service();
                 Optional<Exception> result=save.saveSMS(sms);
                 result.ifPresent(System.out::println);
