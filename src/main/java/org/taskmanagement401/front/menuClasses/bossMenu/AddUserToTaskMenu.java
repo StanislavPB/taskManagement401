@@ -13,22 +13,17 @@ import java.util.Optional;
 
 public class AddUserToTaskMenu {
     public AddUserToTaskMenu(ProjectRepository projectRepository,
-                             UserRepository userRepository,
+
                              TaskRepository taskRepository) {
 
         System.out.println("Select a project to find task for adding user: ");
-// вывели активные проекты, босс ввел число - айди проекта - получили проект
-        Optional<Project> optionalProject = PrintActiveProjects.print(projectRepository);
+       Optional<Project> optionalProject = PrintActiveProjects.print(projectRepository);
 
         if (optionalProject.isEmpty()){
             System.out.println("Invalid project selection");}
         else {
-            //? надо полученный проект записать в переменную выбранныйПроект
-
-
             System.out.println("Select a task for adding user: ");
-            //вывести все задачи проекта и запросить айди задачи у босса
-            Optional<Task> taskOptional = PrintSelectedProjectsTasks.print(taskRepository, optionalProject.get());
+             Optional<Task> taskOptional = PrintSelectedProjectsTasks.print(taskRepository, optionalProject.get());
 
 
             if (taskOptional.isEmpty()) {
@@ -36,7 +31,6 @@ public class AddUserToTaskMenu {
             } else {
 
                 System.out.println("Select a user for adding to selected task: ");
-                //вывести всех-всех юзеров, запросить номер по айди для добавления его к задаче
                 Optional<User> userOptional = PrintUsers.print(optionalProject.get(),taskOptional.get());
 
                 if (userOptional.isEmpty()) {

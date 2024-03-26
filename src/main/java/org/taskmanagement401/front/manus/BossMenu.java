@@ -56,7 +56,6 @@ public class BossMenu {
             case 5:
                 AddUserToTaskMenu addUserToTaskMenu=new AddUserToTaskMenu(
                   servicesGeneration.getProjectRepository(),
-                        servicesGeneration.getUserRepository(),
                         servicesGeneration.getTaskRepository()
                 );
                 break;
