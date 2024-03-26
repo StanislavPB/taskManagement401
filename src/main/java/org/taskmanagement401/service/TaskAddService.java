@@ -1,6 +1,7 @@
 package org.taskmanagement401.service;
 
 
+import org.taskmanagement401.config.ErrorCodes;
 import org.taskmanagement401.dto.ResponseDTO;
 import org.taskmanagement401.dto.TaskDto;
 import org.taskmanagement401.dto.error.ErrorDto;
@@ -11,6 +12,7 @@ import org.taskmanagement401.service.dataService.save.SaveTask;
 import org.taskmanagement401.service.validation.TaskValidation;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TaskAddService {
     private TaskRepository taskRepository;
@@ -28,9 +30,21 @@ public class TaskAddService {
             project.getTasks().add(task);
             task.setProject(project);
             SaveTask saveTask=new SaveTask();
-            saveTask.save(task);
-            saveTask.saveList(task,project);
-            return new ResponseDTO(200, task);
+            Optional<Exception> result=saveTask.save(task);
+            if(result.isPresent()){
+                errors.add(new ErrorDto(ErrorCodes.DATASAVING.getStatusCode(),
+                        ErrorCodes.DATASAVING.getDescription()+result.get().getMessage()));
+                return new ResponseDTO<>(400,errors);
+            }
+            result=saveTask.saveList(task,project);
+            if(result.isPresent()){
+                errors.add(new ErrorDto(ErrorCodes.DATASAVING.getStatusCode(),
+                        ErrorCodes.DATASAVING.getDescription()+result.get().getMessage()));
+                return new ResponseDTO<>(400,errors);
+            }else {
+                return new ResponseDTO(200, task);
+            }
+
         } else {
             return new ResponseDTO<>(400, errors);
         }
